@@ -60,7 +60,7 @@ configurations. Benchmark/run options: method `tp|tsp`, block `attn|mlp`, dtype 
 | 10-11 | one fused GEMM `X [W_Q;W_K;W_V]^T` viewed as `[B, S_loc, 3, H_s, d]` (equivalent to three products) |
 | 13 | `attn = empty([B, S_loc, H_s, d])` (every element is written below) |
 | 14-15 | loop over head buckets; local K/V of the bucket packed into one `[2, B, S_loc, H_b, d]` buffer |
-| 16 | `all_gather_single` (one collective for K and V) -> `[D, 2, B, S_loc, H_b, d]` |
+| 16 | `all_gather_stacked` (one collective for K and V) -> `[D, 2, B, S_loc, H_b, d]`; `all_gather_single` on newer PyTorch, `all_gather_into_tensor` before the API rename |
 | 17 | `layout.zigzag_reorder_gathered`: one concatenation kernel -> global order `[2, B, S, H_b, d]` |
 | 18-20 | query chunks `q[:, :S_c]`, `q[:, S_c:]` attend to key prefixes `[:s1]`, `[:s2]` with **bottom-right** causal alignment (`ops.causal_attention`) |
 | 21 | results written into `attn[:, :S_c, bucket]` / `attn[:, S_c:, bucket]` |
@@ -70,6 +70,8 @@ configurations. Benchmark/run options: method `tp|tsp`, block `attn|mlp`, dtype 
 `overlap=True` (default) prefetches broadcast `r+1` before computing shard `r`; the owner does not
 stall on its own broadcast (it only reads its persistent buffer) and waits on that handle before
 returning. `overlap=False` issues each broadcast synchronously, literally as written.
+The `q` and `attn2d` views are explicitly released with their backing tensors after each owner, so
+previous-owner QKV/attention storage is not retained while the next owner's K/V buffers are allocated.
 
 ## Algorithm 2 -> `TSPMLP` (`src/tspfold/tsp.py`)
 
@@ -105,6 +107,18 @@ MLP: replicated input; `ops.swiglu_shard` on the local channels (same kernel seq
   `sdpa` (PyTorch's choice, default), `flash`, `efficient`, `math`, `cudnn` (SDPA restricted via
   `sdpa_kernel`), `flash_attn` (optional Dao-AILab package), `naive` (explicit). The kernels that
   actually ran are recorded per method by the benchmark's profiler pass (`profile.attention_kernels`).
+- `cudnn_frontend` is an explicit, optional alternative using cuDNN graph SDPA with
+  `diagonal_alignment=BOTTOM_RIGHT` and `diagonal_band_right_bound=0`, for square and non-square
+  CUDA FP16/BF16 inputs. It does not construct an S-by-S mask or pad the queries. The tested NVIDIA
+  PyTorch 2.12 `CausalBias` dispatch skips cuDNN for non-square lower-right attention, so this path
+  bypasses that dispatch limitation without changing `sdpa` or the operator.
+
+The native cuDNN path is forward-only and rejects enabled autograd on gradient-requiring inputs.
+Plans are cached by dtype, shape, and all input strides, with at most 32 plans per thread/device.
+The cache holds only graph metadata, not inputs, outputs, or GPU workspace tensors. Each invocation
+binds fresh tensor pointers and uses the caller's current CUDA stream; output and workspace lifetimes
+remain visible to the allocator measurements. Planning occurs on the first warmup, outside timing.
+This changes kernel dispatch only; it does not implement the paper's staggered K/V/weight pipeline.
 
 ## Precision policy
 
@@ -127,6 +141,9 @@ MLP: replicated input; `ops.swiglu_shard` on the local channels (same kernel seq
   freed every iteration; pre-operation allocated baseline, peak allocated/reserved (max over ranks),
   and whole-device usage (`cudaMemGetInfo`, includes CUDA context and NCCL buffers) are recorded.
 - Reporting collectives, output checksums, and the optional profiler pass run after measurement.
+- Profiler categories count device kernels, not user annotations that duplicate NCCL durations.
+  GB200 `nvjet` matrix-multiply kernels are classified as GEMMs. Actual attention backends are retained
+  separately for each rank; an identical `sdpa` policy can choose different square/non-square kernels.
 - Failures: per-rank status files; the failing rank exits without entering collectives, torchrun
   tears down its peer; the sweep driver enforces a wall-clock timeout and records `oom`, `unsupported`,
   `invalid_config`, `error`, `crash`, `timeout`, or `skipped` as distinct outcomes.

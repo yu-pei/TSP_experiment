@@ -1,0 +1,1431 @@
+# Publication redactions: internal hostnames and private network addresses only; measurement values, GPU indices/PCI identities, and source provenance are unchanged.
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclOsDlopen(libnccl-env.so) failed: libnccl-env.so: cannot open shared object file: No such file or directory
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO cudaDriverVersion 13020
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO NCCL version 2.30.4+cuda13.1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO NCCL git version unknown unknown
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlopen(libnccl-env.so) failed: libnccl-env.so: cannot open shared object file: No such file or directory
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO cudaDriverVersion 13020
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO NCCL version 2.30.4+cuda13.1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO NCCL git version unknown unknown
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO NET/Plugin: Loaded net plugin NCCL RDMA Plugin v11 (v11)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO NET/Plugin: Loaded net plugin NCCL RDMA Plugin v11 (v11)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO NET/Plugin: Loaded collnet plugin SHARP (v11)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Successfully loaded external network plugin /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO NET/Plugin: Loaded collnet plugin SHARP (v11)
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Successfully loaded external network plugin /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Plugin Path : /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO P2P plugin v11 IBext_v11
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Plugin Path : /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO P2P plugin v11 IBext_v11
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB/SHARP [1]mlx5_1:1/IB/SHARP [2]mlx5_2aks-phx13gpc04d-40179719-vmss0009UO:10356:10356 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB/SHARP [1]mlx5_1:1/IB/SHARP [2]mlx5_2:1/IB/SHARP [3]mlx5_3:1/IB/SHARP [RO]; OOB eth0:[REDACTED: private IPv4 address]<0>
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Initialized NET plugin NCCL RDMA Plugin v11
+:1/IB/SHARP [3]mlx5_3:1/IB/SHARP [RO]; OOB eth0:[REDACTED: private IPv4 address]<0>
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Initialized NET plugin NCCL RDMA Plugin v11
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Assigned NET plugin NCCL RDMA Plugin v11 to comm
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Assigned NET plugin NCCL RDMA Plugin v11 to comm
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclOsDlopen(libnccl-gin.so) failed: libnccl-gin.so: cannot open saks-phx13gpc04d-40179719-vmss0009UO:10357:10357 [1] NCCL INFO ncclOsDlopen(libnccl-gin.so) failed: libnccl-gin.so: cannot open shared object file: No such file or directory
+hared object file: No such file or directory
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO GIN/Plugin: Could not find: libnccl-gin.so
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO GIN/Plugin: Could not find: libnccl-gin.so
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclGinPlugin_v12) failed: /opt/hpcx/nccl_rdma_sharp_paks-phx13gpc04d-40179719-vmss0009UO:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclGinPlugin_v12) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclGinPlugin_v12
+lugin/lib/libnccl-net.so: undefined symbol: ncclGinPlugin_v12
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclGinPlugin_v12) failed: /opt/hpcx/nccl_rdma_sharp_paks-phx13gpc04d-40179719-vmss0009UO:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclGinPlugin_v12) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclGinPlugin_v12
+lugin/lib/libnccl-net.so: undefined symbol: ncclGinPlugin_v12
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclGinPlugin_v11) failed: /opt/hpcx/nccl_rdma_sharp_paks-phx13gpc04d-40179719-vmss0009UO:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclGinPlugin_v11) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclGinPlugin_v11
+lugin/lib/libnccl-net.so: undefined symbol: ncclGinPlugin_v11
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclGinPlugin_v11) failed: /opt/hpcx/nccl_rdma_sharp_paks-phx13gpc04d-40179719-vmss0009UO:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclGinPlugin_v11) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclGinPlugin_v11
+lugin/lib/libnccl-net.so: undefined symbol: ncclGinPlugin_v11
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Successfully loaded external gin plugin /opt/hpcx/nccl_rdma_sharp_aks-phx13gpc04d-40179719-vmss0009UO:10356:10356 [0] NCCL INFO Successfully loaded external gin plugin /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so
+plugin/lib/libnccl-net.so
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [RO]; OOB eth0:[REDACTED: private IPv4 address]<0>
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Assigned RMA plugin GIN_IB_PROXY to comm
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Using network NCCL RDMA Plugin v11
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Loaded NVML from libnvidia-ml.so.1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [RO]; OOB eth0:[REDACTED: private IPv4 address]<0>
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Assigned RMA plugin GIN_IB_PROXY to comm
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Using network NCCL RDMA Plugin v11
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Loaded NVML from libnvidia-ml.so.1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO DMA-BUF is available on GPU device 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO [Rank 1] ncclCommInitRankConfig comm 0x29a2d8c0 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 901000 commId 0x574383a414963cd5 - Init START
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO DMA-BUF is available on GPU device 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO [Rank 0] ncclCommInitRankConfig comm 0x40f9ec30 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 801000 commId 0x574383a414963cd5 - Init START
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO MNNVL busId 0x901000 fabric UUID c347220d9ca72544.60b8935393ac5f87aks-phx13gpc04d-40179719-vmss0009UO:10356:10356 [0] NCCL INFO MNNVL busId 0x801000 fabric UUID c347220d9ca72544.60b8935393ac5f87 cliqueId 0x7ffe state 3 healthMask 0xaa
+ cliqueId 0x7ffe state 3 healthMask 0xaa
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Could not find real path of /sys/class/pci_bus/fffffff/../../fffffff:ff:f
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO TOPO/NET : Importing network plugins to topology
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000003-0101-0000-3135-423331303142/pci0101:00/0101:00:00.0/../max_link_speed, ignoring
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000003-0101-0000-3135-423331303142/pci0101:00/0101:00:00.0/../max_link_width, ignoring
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclTopoPopulateNics : Filled mlx5_0 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000003-0101-0000-3135-423331303142/pci0101:00/0101:00:00.0 net=0 gin=1 keep=1 coll=(null)
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000203-0102-0000-3135-423331303142/pci0102:00/0102:00:00.0/../max_link_speed, ignoring
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000203-0102-0000-3135-423331303142/pci0102:00/0102:00:00.0/../max_link_width, ignoring
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclTopoPopulateNics : Filled mlx5_1 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000203-0102-0000-3135-423331303142/pci0102:00/0102:00:00.0 net=0 gin=1 keep=1 coll=(null)
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001003-0103-0001-3135-423331303142/pci0103:00/0103:00:00.0/../max_link_speed, ignoring
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001003-0103-0001-3135-423331303142/pci0103:00/0103:00:00.0/../max_link_width, ignoring
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclTopoPopulateNics : Filled mlx5_2 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001003-0103-0001-3135-423331303142/pci0103:00/0103:00:00.0 net=0 gin=1 keep=1 coll=(null)
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001203-0104-0001-3135-423331303142/pci0104:00/0104:00:00.0/../max_link_speed, ignoring
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001203-0104-0001-3135-423331303142/pci0104:00/0104:00:00.0/../max_link_width, ignoring
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclTopoPopulateNics : Filled mlx5_3 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001203-0104-0001-3135-423331303142/pci0104:00/0104:00:00.0 net=0 gin=1 keep=1 coll=(null)
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclTopoPopulateNics : Filled mlx5_0 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000003-0101-0000-3135-423331303142/pci0101:00/0101:00:00.0 net=0 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclTopoPopulateNics : Filled mlx5_1 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000203-0102-0000-3135-423331303142/pci0102:00/0102:00:00.0 net=0 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclTopoPopulateNics : Filled mlx5_2 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001003-0103-0001-3135-423331303142/pci0103:00/0103:00:00.0 net=0 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclTopoPopulateNics : Filled mlx5_3 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001203-0104-0001-3135-423331303142/pci0104:00/0104:00:00.0 net=0 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclTopoPopulateNics : Filled mlx5_0 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000003-0101-0000-3135-423331303142/pci0101:00/0101:00:00.0 net=1 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclTopoPopulateNics : Filled mlx5_1 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000203-0102-0000-3135-423331303142/pci0102:00/0102:00:00.0 net=1 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclTopoPopulateNics : Filled mlx5_2 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001003-0103-0001-3135-423331303142/pci0103:00/0103:00:00.0 net=1 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclTopoPopulateNics : Filled mlx5_3 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001203-0104-0001-3135-423331303142/pci0104:00/0104:00:00.0 net=1 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Could not find real path of /sys/class/pci_bus/fffffff/../../fffffff:ff:f
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO TOPO/NET : Importing network plugins to topology
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000003-0101-0000-3135-423331303142/pci0101:00/0101:00:00.0/../max_link_speed, ignoring
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000003-0101-0000-3135-423331303142/pci0101:00/0101:00:00.0/../max_link_width, ignoring
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclTopoPopulateNics : Filled mlx5_0 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000003-0101-0000-3135-423331303142/pci0101:00/0101:00:00.0 net=0 gin=1 keep=1 coll=(null)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000203-0102-0000-3135-423331303142/pci0102:00/0102:00:00.0/../max_link_speed, ignoring
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000203-0102-0000-3135-423331303142/pci0102:00/0102:00:00.0/../max_link_width, ignoring
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclTopoPopulateNics : Filled mlx5_1 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000203-0102-0000-3135-423331303142/pci0102:00/0102:00:00.0 net=0 gin=1 keep=1 coll=(null)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001003-0103-0001-3135-423331303142/pci0103:00/0103:00:00.0/../max_link_speed, ignoring
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001003-0103-0001-3135-423331303142/pci0103:00/0103:00:00.0/../max_link_width, ignoring
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclTopoPopulateNics : Filled mlx5_2 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001003-0103-0001-3135-423331303142/pci0103:00/0103:00:00.0 net=0 gin=1 keep=1 coll=(null)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001203-0104-0001-3135-423331303142/pci0104:00/0104:00:00.0/../max_link_speed, ignoring
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Topology detection : could not read /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001203-0104-0001-3135-423331303142/pci0104:00/0104:00:00.0/../max_link_width, ignoring
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclTopoPopulateNics : Filled mlx5_3 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001203-0104-0001-3135-423331303142/pci0104:00/0104:00:00.0 net=0 gin=1 keep=1 coll=(null)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclTopoPopulateNics : Filled mlx5_0 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000003-0101-0000-3135-423331303142/pci0101:00/0101:00:00.0 net=0 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclTopoPopulateNics : Filled mlx5_1 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000203-0102-0000-3135-423331303142/pci0102:00/0102:00:00.0 net=0 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclTopoPopulateNics : Filled mlx5_2 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001003-0103-0001-3135-423331303142/pci0103:00/0103:00:00.0 net=0 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclTopoPopulateNics : Filled mlx5_3 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001203-0104-0001-3135-423331303142/pci0104:00/0104:00:00.0 net=0 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclTopoPopulateNics : Filled mlx5_0 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000003-0101-0000-3135-423331303142/pci0101:00/0101:00:00.0 net=1 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclTopoPopulateNics : Filled mlx5_1 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00000203-0102-0000-3135-423331303142/pci0102:00/0102:00:00.0 net=1 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclTopoPopulateNics : Filled mlx5_2 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001003-0103-0001-3135-423331303142/pci0103:00/0103:00:00.0 net=1 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclTopoPopulateNics : Filled mlx5_3 in topo with pciPath=/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/00001203-0104-0001-3135-423331303142/pci0104:00/0104:00:00.0 net=1 gin=1 keep=1 coll=1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO === System : maxBw 721.8 totalBw 721.8 ===
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO CPU/0-0 (3/-1/-1)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO + C2C[223.6] - DEV/0-801000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO + C2C[223.6] - DEV/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO + PCI[48.0] - NIC/0-10100000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO               + NET[50.0] - NET/0-0 (1/52faf30003e60050/1/50.000000)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO               + NET[50.0] - GIN/0-0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO + PCI[48.0] - NIC/0-10200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO               + NET[50.0] - NET/0-1 (1/56faf30003e60050/1/50.000000)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO               + NET[50.0] - GIN/0-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO + SYS[6.0] - CPU/0-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO + PCI[1.5] - DEV/0-801000 (10de294110de2046)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO              + LOC[5000.0] - GPU/0-801000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO              + NVL[721.8] - NVS/0-0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO              + C2C[223.6] - CPU/0-0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO + PCI[1.5] - DEV/0-901000 (10de294110de2046)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO              + LOC[5000.0] - GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO              + NVL[721.8] - NVS/0-0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO              + C2C[223.6] - CPU/0-0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO CPU/0-1 (3/-1/-1)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO + PCI[48.0] - NIC/0-10300000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO               + NET[50.0] - NET/0-2 (1/261f30003e60050/1/50.000000)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO               + NET[50.0] - GIN/0-2
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO + PCI[48.0] - NIC/0-10400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO               + NET[50.0] - NET/0-3 (1/661f30003e60050/1/50.000000)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO               + NET[50.0] - GIN/0-3
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO + SYS[6.0] - CPU/0-0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ==========================================
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO GPU/0-801000 :GPU/0-801000 (0/5000.0/LOC) GPU/0-901000 (4/721.8/NVL) NVS/0-0 (2/721.8/NVL) CPU/0-0 (2/223.6/C2C) CPU/0-1 (3/6.0/SYS) NET/0-0 (4/48.0/P2C) NET/0-1 (4/48.0/P2C) NET/0-2 (5/6.0/SYS) NET/0-3 (5/6.0/SYS) GIN/0-0 (4/48.0/PHB) GIN/0-1 (4/48.0/PHB) GIN/0-2 (5/6.0/SYS) GIN/0-3 (5/6.0/SYS) DEV/0-801000 (1/5000.0/LOC) DEV/0-901000 (3/721.8/NVL) 
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO GPU/0-901000 :GPU/0-801000 (4/721.8/NVL) GPU/0-901000 (0/5000.0/LOC) NVS/0-0 (2/721.8/NVL) CPU/0-0 (2/223.6/C2C) CPU/0-1 (3/6.0/SYS) NET/0-0 (4/48.0/P2C) NET/0-1 (4/48.0/P2C) NET/0-2 (5/6.0/SYS) NET/0-3 (5/6.0/SYS) GIN/0-0 (4/48.0/PHB) GIN/0-1 (4/48.0/PHB) GIN/0-2 (5/6.0/SYS) GIN/0-3 (5/6.0/SYS) DEV/0-801000 (3/721.8/NVL) DEV/0-901000 (1/5000.0/LOC) 
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO NET/0-0 :GPU/0-801000 (4/48.0/P2C) GPU/0-901000 (4/48.0/P2C) CPU/0-0 (2/48.0/PHB) CPU/0-1 (3/6.0/SYS) NET/0-0 (0/5000.0/LOC) NET/0-1 (4/48.0/PHB) NET/0-2 (5/6.0/SYS) NET/0-3 (5/6.0/SYS) GIN/0-0 (2/50.0/LOC) GIN/0-1 (4/48.0/PHB) GIN/0-2 (5/6.0/SYS) GIN/0-3 (5/6.0/SYS) DEV/0-801000 (3/48.0/PHB) DEV/0-901000 (3/48.0/PHB) 
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO NET/0-1 :GPU/0-801000 (4/48.0/P2C) GPU/0-901000 (4/48.0/P2C) CPU/0-0 (2/48.0/PHB) CPU/0-1 (3/6.0/SYS) NET/0-0 (4/48.0/PHB) NET/0-1 (0/5000.0/LOC) NET/0-2 (5/6.0/SYS) NET/0-3 (5/6.0/SYS) GIN/0-0 (4/48.0/PHB) GIN/0-1 (2/50.0/LOC) GIN/0-2 (5/6.0/SYS) GIN/0-3 (5/6.0/SYS) DEV/0-801000 (3/48.0/PHB) DEV/0-901000 (3/48.0/PHB) 
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO NET/0-2 :GPU/0-801000 (5/6.0/SYS) GPU/0-901000 (5/6.0/SYS) CPU/0-0 (3/6.0/SYS) CPU/0-1 (2/48.0/PHB) NET/0-0 (5/6.0/SYS) NET/0-1 (5/6.0/SYS) NET/0-2 (0/5000.0/LOC) NET/0-3 (4/48.0/PHB) GIN/0-0 (5/6.0/SYS) GIN/0-1 (5/6.0/SYS) GIN/0-2 (2/50.0/LOC) GIN/0-3 (4/48.0/PHB) DEV/0-801000 (4/6.0/SYS) DEV/0-901000 (4/6.0/SYS) 
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO NET/0-3 :GPU/0-801000 (5/6.0/SYS) GPU/0-901000 (5/6.0/SYS) CPU/0-0 (3/6.0/SYS) CPU/0-1 (2/48.0/PHB) NET/0-0 (5/6.0/SYS) NET/0-1 (5/6.0/SYS) NET/0-2 (4/48.0/PHB) NET/0-3 (0/5000.0/LOC) GIN/0-0 (5/6.0/SYS) GIN/0-1 (5/6.0/SYS) GIN/0-2 (4/48.0/PHB) GIN/0-3 (2/50.0/LOC) DEV/0-801000 (4/6.0/SYS) DEV/0-901000 (4/6.0/SYS) 
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO GIN/0-0 :GPU/0-801000 (4/48.0/PHB) GPU/0-901000 (4/48.0/PHB) CPU/0-0 (2/48.0/PHB) CPU/0-1 (3/6.0/SYS) NET/0-0 (2/50.0/LOC) NET/0-1 (4/48.0/PHB) NET/0-2 (5/6.0/SYS) NET/0-3 (5/6.0/SYS) GIN/0-0 (0/5000.0/LOC) GIN/0-1 (4/48.0/PHB) GIN/0-2 (5/6.0/SYS) GIN/0-3 (5/6.0/SYS) DEV/0-801000 (3/48.0/PHB) DEV/0-901000 (3/48.0/PHB) 
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO GIN/0-1 :GPU/0-801000 (4/48.0/PHB) GPU/0-901000 (4/48.0/PHB) CPU/0-0 (2/48.0/PHB) CPU/0-1 (3/6.0/SYS) NET/0-0 (4/48.0/PHB) NET/0-1 (2/50.0/LOC) NET/0-2 (5/6.0/SYS) NET/0-3 (5/6.0/SYS) GIN/0-0 (4/48.0/PHB) GIN/0-1 (0/5000.0/LOC) GIN/0-2 (5/6.0/SYS) GIN/0-3 (5/6.0/SYS) DEV/0-801000 (3/48.0/PHB) DEV/0-901000 (3/48.0/PHB) 
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO GIN/0-2 :GPU/0-801000 (5/6.0/SYS) GPU/0-901000 (5/6.0/SYS) CPU/0-0 (3/6.0/SYS) CPU/0-1 (2/48.0/PHB) NET/0-0 (5/6.0/SYS) NET/0-1 (5/6.0/SYS) NET/0-2 (2/50.0/LOC) NET/0-3 (4/48.0/PHB) GIN/0-0 (5/6.0/SYS) GIN/0-1 (5/6.0/SYS) GIN/0-2 (0/5000.0/LOC) GIN/0-3 (4/48.0/PHB) DEV/0-801000 (4/6.0/SYS) DEV/0-901000 (4/6.0/SYS) 
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO GIN/0-3 :GPU/0-801000 (5/6.0/SYS) GPU/0-901000 (5/6.0/SYS) CPU/0-0 (3/6.0/SYS) CPU/0-1 (2/48.0/PHB) NET/0-0 (5/6.0/SYS) NET/0-1 (5/6.0/SYS) NET/0-2 (4/48.0/PHB) NET/0-3 (2/50.0/LOC) GIN/0-0 (5/6.0/SYS) GIN/0-1 (5/6.0/SYS) GIN/0-2 (4/48.0/PHB) GIN/0-3 (0/5000.0/LOC) DEV/0-801000 (4/6.0/SYS) DEV/0-901000 (4/6.0/SYS) 
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 0-63. (GPU affinity = 0-63 ; CPU affinity = 0-127).
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO NVLS multicast support is available on dev 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO === System : maxBw 721.8 totalBw 721.8 ===
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO CPU/0-0 (3/-1/-1)
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO + C2C[223.6] - DEV/0-801000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO + C2C[223.6] - DEV/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO + PCI[48.0] - NIC/0-10100000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO               + NET[50.0] - NET/0-0 (1/52faf30003e60050/1/50.000000)
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO               + NET[50.0] - GIN/0-0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO + PCI[48.0] - NIC/0-10200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO               + NET[50.0] - NET/0-1 (1/56faf30003e60050/1/50.000000)
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO               + NET[50.0] - GIN/0-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO + SYS[6.0] - CPU/0-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO + PCI[1.5] - DEV/0-801000 (10de294110de2046)
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO              + LOC[5000.0] - GPU/0-801000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO              + NVL[721.8] - NVS/0-0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO              + C2C[223.6] - CPU/0-0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO + PCI[1.5] - DEV/0-901000 (10de294110de2046)
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO              + LOC[5000.0] - GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO              + NVL[721.8] - NVS/0-0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO              + C2C[223.6] - CPU/0-0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO CPU/0-1 (3/-1/-1)
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO + PCI[48.0] - NIC/0-10300000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO               + NET[50.0] - NET/0-2 (1/261f30003e60050/1/50.000000)
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO               + NET[50.0] - GIN/0-2
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO + PCI[48.0] - NIC/0-10400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO               + NET[50.0] - NET/0-3 (1/661f30003e60050/1/50.000000)
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO               + NET[50.0] - GIN/0-3
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO + SYS[6.0] - CPU/0-0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ==========================================
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO GPU/0-801000 :GPU/0-801000 (0/5000.0/LOC) GPU/0-901000 (4/721.8/NVL) NVS/0-0 (2/721.8/NVL) CPU/0-0 (2/223.6/C2C) CPU/0-1 (3/6.0/SYS) NET/0-0 (4/48.0/P2C) NET/0-1 (4/48.0/P2C) NET/0-2 (5/6.0/SYS) NET/0-3 (5/6.0/SYS) GIN/0-0 (4/48.0/PHB) GIN/0-1 (4/48.0/PHB) GIN/0-2 (5/6.0/SYS) GIN/0-3 (5/6.0/SYS) DEV/0-801000 (1/5000.0/LOC) DEV/0-901000 (3/721.8/NVL) 
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO GPU/0-901000 :GPU/0-801000 (4/721.8/NVL) GPU/0-901000 (0/5000.0/LOC) NVS/0-0 (2/721.8/NVL) CPU/0-0 (2/223.6/C2C) CPU/0-1 (3/6.0/SYS) NET/0-0 (4/48.0/P2C) NET/0-1 (4/48.0/P2C) NET/0-2 (5/6.0/SYS) NET/0-3 (5/6.0/SYS) GIN/0-0 (4/48.0/PHB) GIN/0-1 (4/48.0/PHB) GIN/0-2 (5/6.0/SYS) GIN/0-3 (5/6.0/SYS) DEV/0-801000 (3/721.8/NVL) DEV/0-901000 (1/5000.0/LOC) 
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO NET/0-0 :GPU/0-801000 (4/48.0/P2C) GPU/0-901000 (4/48.0/P2C) CPU/0-0 (2/48.0/PHB) CPU/0-1 (3/6.0/SYS) NET/0-0 (0/5000.0/LOC) NET/0-1 (4/48.0/PHB) NET/0-2 (5/6.0/SYS) NET/0-3 (5/6.0/SYS) GIN/0-0 (2/50.0/LOC) GIN/0-1 (4/48.0/PHB) GIN/0-2 (5/6.0/SYS) GIN/0-3 (5/6.0/SYS) DEV/0-801000 (3/48.0/PHB) DEV/0-901000 (3/48.0/PHB) 
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO NET/0-1 :GPU/0-801000 (4/48.0/P2C) GPU/0-901000 (4/48.0/P2C) CPU/0-0 (2/48.0/PHB) CPU/0-1 (3/6.0/SYS) NET/0-0 (4/48.0/PHB) NET/0-1 (0/5000.0/LOC) NET/0-2 (5/6.0/SYS) NET/0-3 (5/6.0/SYS) GIN/0-0 (4/48.0/PHB) GIN/0-1 (2/50.0/LOC) GIN/0-2 (5/6.0/SYS) GIN/0-3 (5/6.0/SYS) DEV/0-801000 (3/48.0/PHB) DEV/0-901000 (3/48.0/PHB) 
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO NET/0-2 :GPU/0-801000 (5/6.0/SYS) GPU/0-901000 (5/6.0/SYS) CPU/0-0 (3/6.0/SYS) CPU/0-1 (2/48.0/PHB) NET/0-0 (5/6.0/SYS) NET/0-1 (5/6.0/SYS) NET/0-2 (0/5000.0/LOC) NET/0-3 (4/48.0/PHB) GIN/0-0 (5/6.0/SYS) GIN/0-1 (5/6.0/SYS) GIN/0-2 (2/50.0/LOC) GIN/0-3 (4/48.0/PHB) DEV/0-801000 (4/6.0/SYS) DEV/0-901000 (4/6.0/SYS) 
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO NET/0-3 :GPU/0-801000 (5/6.0/SYS) GPU/0-901000 (5/6.0/SYS) CPU/0-0 (3/6.0/SYS) CPU/0-1 (2/48.0/PHB) NET/0-0 (5/6.0/SYS) NET/0-1 (5/6.0/SYS) NET/0-2 (4/48.0/PHB) NET/0-3 (0/5000.0/LOC) GIN/0-0 (5/6.0/SYS) GIN/0-1 (5/6.0/SYS) GIN/0-2 (4/48.0/PHB) GIN/0-3 (2/50.0/LOC) DEV/0-801000 (4/6.0/SYS) DEV/0-901000 (4/6.0/SYS) 
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO GIN/0-0 :GPU/0-801000 (4/48.0/PHB) GPU/0-901000 (4/48.0/PHB) CPU/0-0 (2/48.0/PHB) CPU/0-1 (3/6.0/SYS) NET/0-0 (2/50.0/LOC) NET/0-1 (4/48.0/PHB) NET/0-2 (5/6.0/SYS) NET/0-3 (5/6.0/SYS) GIN/0-0 (0/5000.0/LOC) GIN/0-1 (4/48.0/PHB) GIN/0-2 (5/6.0/SYS) GIN/0-3 (5/6.0/SYS) DEV/0-801000 (3/48.0/PHB) DEV/0-901000 (3/48.0/PHB) 
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO GIN/0-1 :GPU/0-801000 (4/48.0/PHB) GPU/0-901000 (4/48.0/PHB) CPU/0-0 (2/48.0/PHB) CPU/0-1 (3/6.0/SYS) NET/0-0 (4/48.0/PHB) NET/0-1 (2/50.0/LOC) NET/0-2 (5/6.0/SYS) NET/0-3 (5/6.0/SYS) GIN/0-0 (4/48.0/PHB) GIN/0-1 (0/5000.0/LOC) GIN/0-2 (5/6.0/SYS) GIN/0-3 (5/6.0/SYS) DEV/0-801000 (3/48.0/PHB) DEV/0-901000 (3/48.0/PHB) 
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO GIN/0-2 :GPU/0-801000 (5/6.0/SYS) GPU/0-901000 (5/6.0/SYS) CPU/0-0 (3/6.0/SYS) CPU/0-1 (2/48.0/PHB) NET/0-0 (5/6.0/SYS) NET/0-1 (5/6.0/SYS) NET/0-2 (2/50.0/LOC) NET/0-3 (4/48.0/PHB) GIN/0-0 (5/6.0/SYS) GIN/0-1 (5/6.0/SYS) GIN/0-2 (0/5000.0/LOC) GIN/0-3 (4/48.0/PHB) DEV/0-801000 (4/6.0/SYS) DEV/0-901000 (4/6.0/SYS) 
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO GIN/0-3 :GPU/0-801000 (5/6.0/SYS) GPU/0-901000 (5/6.0/SYS) CPU/0-0 (3/6.0/SYS) CPU/0-1 (2/48.0/PHB) NET/0-0 (5/6.0/SYS) NET/0-1 (5/6.0/SYS) NET/0-2 (4/48.0/PHB) NET/0-3 (2/50.0/LOC) GIN/0-0 (5/6.0/SYS) GIN/0-1 (5/6.0/SYS) GIN/0-2 (4/48.0/PHB) GIN/0-3 (0/5000.0/LOC) DEV/0-801000 (4/6.0/SYS) DEV/0-901000 (4/6.0/SYS) 
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 1 is 0-63. (GPU affinity = 0-63 ; CPU affinity = 0-127).
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO NVLS multicast support is available on dev 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Pattern 4, crossNic 0, nChannels 16, bw 45.000000/45.000000, type NVL/PIX, sameChannels 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  0 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  1 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  2 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  3 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  4 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  5 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  6 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  7 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  8 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  9 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO 10 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO 11 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO 12 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO 13 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO 14 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO 15 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Pattern 1, crossNic 0, nChannels 16, bw 90.000000/90.000000, type NVL/PIX, sameChannels 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  0 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  1 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  2 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  3 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  4 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  5 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  6 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  7 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  8 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  9 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO 10 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO 11 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO 12 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO 13 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO 14 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO 15 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Pattern 5, crossNic 0, nChannels 2, bw 90.000000/90.000000, type NVL/PIX, sameChannels 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  0 : GPU/0-801000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO  1 : GPU/0-901000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Rank 0: 4 Net devices
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Rank 0: 4 CollNet devices
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Pattern 4, crossNic 0, nChannels 16, bw 45.000000/45.000000, type NVL/PIX, sameChannels 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  0 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  1 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  2 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  3 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  4 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  5 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  6 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  7 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  8 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  9 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO 10 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO 11 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO 12 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO 13 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO 14 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO 15 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Pattern 1, crossNic 0, nChannels 16, bw 90.000000/90.000000, type NVL/PIX, sameChannels 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  0 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  1 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  2 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  3 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  4 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  5 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  6 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  7 : GPU/0-801000 GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  8 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  9 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO 10 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO 11 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO 12 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO 13 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO 14 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO 15 : GPU/0-901000 GPU/0-801000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Pattern 5, crossNic 0, nChannels 2, bw 90.000000/90.000000, type NVL/PIX, sameChannels 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  0 : GPU/0-801000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO  1 : GPU/0-901000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Rank 1: 4 Net devices
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Rank 1: 4 CollNet devices
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Local Net device counts across ranks: min 4 max 4
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO comm 0x29a2d8c0 rank 1 nRanks 2 nNodes 1 localRanks 2 localRank 1 MNNVL 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO NVLS tuning: nChannels 24 chunkSize 131072 treeMaxChunkSize 131072
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Local CollNet device counts across ranks: min 4 max 4
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 0 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO comm 0x40f9ec30 rank 0 nRanks 2 nNodes 1 localRanks 2 localRank 0 [REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 16 : 0 -> 1 -> -1/-1/-1
+MNNVL 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 1 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 17 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 2 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO NVLS tuning: nChannels 24 chunkSize 131072 treeMaxChunkSize 131072aks-phx13gpc04d-40179719-vmss0009UO:10357:10357 [1] NCCL INFO Tree 18 : 0 -> 1 -> -1/-1/-1
+
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 3 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 19 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 0 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 4 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 16 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 20 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 5 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 1 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 21 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 17 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 2 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 6 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 18 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 22 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 3 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 7 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 19 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 23 : 0 -> 1 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 4 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 8 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 24 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 20 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 9 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 25 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 5 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 10 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 26 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 21 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 11 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 6 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 27 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 22 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 12 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 7 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 28 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 13 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 23 : -1 -> 0 -> 1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 29 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 14 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 8 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 30 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 15 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 24 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Tree 31 : -1 -> 1 -> 0/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 9 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 25 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 10 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 26 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 11 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 00 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 27 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 01 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 02 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 12 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 03 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 28 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 04 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 13 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 05 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 06 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 29 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 07 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 08 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 14 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 09 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 30 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 10 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 15 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 11 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Tree 31 : 1 -> 0 -> -1/-1/-1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 12 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 13 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 14 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 00/32 : 0 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 01/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 15 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 02/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 16 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 03/32 : 0 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 04/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 17 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 05/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 18 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 06/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 19 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 07/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 20 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 08/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 21 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 09/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 22 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 10/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 23 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 11/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 24 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 12/32 : 0 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 13/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 25 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 26 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 14/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 27 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 28 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 15/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 29 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 30 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 16/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Ring 31 : 0 -> 1 -> 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] -1/-1/-1->1->0 [3][REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 17/32 : 0 1
+ -1/-1/-1->1->0 [4] -1/-1/-1->1->0 [5] -1/-1/-1->1->0 [6] -1/-1/-1->1->0 [7] -1/-1/-1->1->0 [8] 0/-1/-1->1->-1 [9] 0/-1/-1->1->-[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 18/32 : 0 1
+1 [10] 0/-1/-1->1->-1 [11] 0/-1/-1->1->-1 [12] 0/-1/-1->1->-1 [13] 0/-1/-1->1->-1 [14] 0/-1/-1->1->-1 [15] 0/-1/-1->1->-1 [16] -[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 19/32 : 0 1
+1/-1/-1->1->0 [17] -1/-1/-1->1->0 [18] -1/-1/-1->1->0 [19] -1/-1/-1->1->0 [20] -1/-1/-1->1->0 [21] -1/-1/-1->1->0 [22] -1/-1/-1-[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 20/32 : 0 1
+>1->0 [23] -1/-1/-1->1->0 [24] 0/-1/-1->1->-1 [25] 0/-1/-1->1->-1 [26] 0/-1/-1->1->-1 [27] 0/-1/-1->1->-1 [28] 0/-1/-1->1->-1 [2aks-phx13gpc04d-40179719-vmss0009UO:10356:10356 [0] NCCL INFO Channel 21/32 : 0 1
+9] 0/-1/-1->1->-1 [30] 0/-1/-1->1->-1 [31] 0/-1/-1->1->-1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 22/32 : 0 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 23/32 : 0 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO P2P Chunksize set to 524288
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 24/32 : 0 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 25/32 : 0 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 26/32 : 0 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 27/32 : 0 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 28/32 : 0 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 29/32 : 0 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 30/32 : 0 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 31/32 : 0 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 00 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 01 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 02 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 03 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 04 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 05 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 06 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 07 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 08 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 09 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 10 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 11 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 12 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 13 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 14 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 15 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 16 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 17 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 18 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 19 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 20 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 21 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 22 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 23 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 24 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 25 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 26 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 27 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 28 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 29 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 30 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Ring 31 : 1 -> 0 -> 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] 1/-1/-1->0->-1 [7] 1/-1/-1->0->-1 [8] -1/-1/-1->0->1 [9] -1/-1/-1->0->1 [10] -1/-1/-1->0->1 [11] -1/-1/-1->0->1 [12] -1/-1/-1->0->1 [13] -1/-1/-1->0->1 [14] -1/-1/-1->0->1 [15] -1/-1/-1->0->1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] 1/-1/-1->0->-1 [19] 1/-1/-1->0->-1 [20] 1/-1/-1->0->-1 [21] 1/-1/-1->0->-1 [22] 1/-1/-1->0->-1 [23] 1/-1/-1->0->-1 [24] -1/-1/-1->0->1 [25] -1/-1/-1->0->1 [26] -1/-1/-1->0->1 [27] -1/-1/-1->0->1 [28] -1/-1/-1->0->1 [29] -1/-1/-1->0->1 [30] -1/-1/-1->0->1 [31] -1/-1/-1->0->1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO P2P Chunksize set to 524288
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclOsDlopen(libnccl-profiler.so) failed: libnccl-profiler.so: canaks-phx13gpc04d-40179719-vmss0009UO:10357:10357 [1] NCCL INFO ncclOsDlopen(libnccl-profiler.so) failed: libnccl-profiler.so: cannot open shared object file: No such file or directory
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+not open shared object file: No such file or directory
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclProfiler_v6) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclProfiler_v6
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclProfiler_v6) failed: /opt/hpcx/nccl_rdma_sharp_pluaks-phx13gpc04d-40179719-vmss0009UO:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclProfiler_v5) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclProfiler_v6
+gin/lib/libnccl-net.so: undefined symbol: ncclProfiler_v5
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclProfiler_v5) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclProfiler_v5
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclProfiler_v4) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclProfiler_v4
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclProfiler_v4) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclProfiler_v4
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclProfiler_v3) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclProfiler_v3
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclProfiler_v3) failed: /opt/hpcx/nccl_rdma_sharp_pluaks-phx13gpc04d-40179719-vmss0009UO:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclProfiler_v2) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclProfiler_v3
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclProfiler_v2) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclProfiler_v2
+gin/lib/libnccl-net.so: undefined symbol: ncclProfiler_v2
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclProfiler_v1) failed: /opt/hpcx/nccl_rdma_sharp_pluaks-phx13gpc04d-40179719-vmss0009UO:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclProfiler_v1) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclProfiler_v1
+gin/lib/libnccl-net.so: undefined symbol: ncclProfiler_v1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclP2pSchedule: group size used is 2
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclP2pSchedule: group size used is 2
+[REDACTED: GPU hostname]:10357:10390 [0] NCCL INFO [Proxy Service] Device 1 CPU core 25
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO [Proxy Service] Device 0 CPU core 5
+[REDACTED: GPU hostname]:10357:10392 [0] NCCL INFO [Proxy Service UDS] Device 1 CPU core 28
+[REDACTED: GPU hostname]:10356:10393 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 13
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclOsDlopen(libnccl-tuner.so) failed: libnccl-tuner.so: cannot open shared object file: No such file or directory
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclTunerPlugin_v5) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclTunerPlugin_v5
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclTunerPlugin_v4) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclTunerPlugin_v4
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclTunerPlugin_v3) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclTunerPlugin_v3
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclOsDlsym(ncclTunerPlugin_v2) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclTunerPlugin_v2
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO 32 coll channels, 32 collnet channels, 24 nvls channels, 32 p2p channels, 32 p2p channels per peer
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlopen(libnccl-tuner.so) failed: libnccl-tuner.so: cannot open shared object file: No such file or directory
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclTunerPlugin_v5) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclTunerPlugin_v5
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclTunerPlugin_v4) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclTunerPlugin_v4
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclTunerPlugin_v3) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclTunerPlugin_v3
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclOsDlsym(ncclTunerPlugin_v2) failed: /opt/hpcx/nccl_rdma_sharp_plugin/lib/libnccl-net.so: undefined symbol: ncclTunerPlugin_v2
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO 32 coll channels, 32 collnet channels, 24 nvls channels, 32 p2p channels, 32 p2p channels per peer
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO CC Off, workFifoBytes 1048576
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO ncclCommInitRankConfig comm 0x29a2d8c0 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 901000 commId 0x574383a414963cd5 - Init COMPLETE
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Init timings - ncclCommInitRankConfig: rank 1 nranks 2 total 0.92 (kernels 0.34, alloc 0.14, bootstrap 0.00, allgathers 0.00, topo 0.19, graphs 0.01, connections 0.24, rest 0.00)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO ncclCommInitRankConfig comm 0x40f9ec30 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 801000 commId 0x574383a414963cd5 - Init COMPLETE
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Init timings - ncclCommInitRankConfig: rank 0 nranks 2 total 0.93 (kernels 0.35, alloc 0.14, bootstrap 0.00, allgathers 0.00, topo 0.19, graphs 0.01, connections 0.24, rest 0.00)
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Symmetric VA size=188GB
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Symmetric VA size=188GB
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8338800000 size 10485760 ipcDesc 0xaks-phx13gpc04d-40179719-vmss0009UO:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db98800000 size 10485760 ipcDesc 0xec834400b680
+e6dba400b700
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8339200000 size 10485760 ipcDesc 0xec834400d3b0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db99200000 size 10485760 ipcDesc 0xe6dba400d430
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db99c00000 size 10485760 ipcDesc 0xaks-phx13gpc04d-40179719-vmss0009UO:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8339c00000 size 10485760 ipcDesc 0xec834400edc0
+e6dba400ee20
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec833a600000 size 10485760 ipcDesc 0xec83440107b0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db9a600000 size 10485760 ipcDesc 0xe6dba40107f0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec833b000000 size 10485760 ipcDesc 0xec8344012180
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db9b000000 size 10485760 ipcDesc 0xe6dba40121c0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec833ba00000 size 10485760 ipcDesc 0xec8344013b50
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db9ba00000 size 10485760 ipcDesc 0xe6dba4013b90
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec833c400000 size 10485760 ipcDesc 0xec8344015520
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db9c400000 size 10485760 ipcDesc 0xe6dba4015520
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec833ce00000 size 10485760 ipcDesc 0xaks-phx13gpc04d-40179719-vmss0009UO:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db9ce00000 size 10485760 ipcDesc 0xec8344016eb0
+e6dba4016eb0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec833d800000 size 10485760 ipcDesc 0xec83440187f0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db9d800000 size 10485760 ipcDesc 0xe6dba40187f0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db9e200000 size 10485760 ipcDesc 0xe6dba401a130
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec833e200000 size 10485760 ipcDesc 0xec834401a130
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec833ec00000 size 10485760 ipcDesc 0xaks-phx13gpc04d-40179719-vmss0009UO:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db9ec00000 size 10485760 ipcDesc 0xec834401ba70
+e6dba401ba70
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db9f600000 size 10485760 ipcDesc 0xe6dba401d3b0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec833f600000 size 10485760 ipcDesc 0xec834401d3b0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe0000000 size 10485760 ipcDesc 0xe6dba401ec50
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8380000000 size 10485760 ipcDesc 0xec834401ec50
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8380a00000 size 10485760 ipcDesc 0xec8344020810
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe0a00000 size 10485760 ipcDesc 0xe6dba4020810
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe1400000 size 10485760 ipcDesc 0xe6dba4022150
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8381400000 size 10485760 ipcDesc 0xec8344022150
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe1e00000 size 10485760 ipcDesc 0xe6dba4023a90
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe2800000 size 10485760 ipcDesc 0xe6dba40253d0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe3200000 size 10485760 ipcDesc 0xe6dba4026d10
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe3c00000 size 10485760 ipcDesc 0xe6dba4028650
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe4600000 size 10485760 ipcDesc 0xe6dba4029f90
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe5000000 size 10485760 ipcDesc 0xe6dba402b8d0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe5a00000 size 10485760 ipcDesc 0xe6dba402d210
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe6400000 size 10485760 ipcDesc 0xe6dba402eb50
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe6e00000 size 10485760 ipcDesc 0xe6dba40304a0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe7800000 size 10485760 ipcDesc 0xe6dba4031de0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe8200000 size 10485760 ipcDesc 0xe6dba4033720
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe8c00000 size 10485760 ipcDesc 0xe6dba4035060
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbe9600000 size 10485760 ipcDesc 0xe6dba40369a0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbea000000 size 10485760 ipcDesc 0xe6dba40382e0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8381e00000 size 10485760 ipcDesc 0xec8344023a90
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbeaa00000 size 10485760 ipcDesc 0xe6dba4039c20
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8382800000 size 10485760 ipcDesc 0xec83440253d0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbeb400000 size 10485760 ipcDesc 0xe6dba403b560
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8383200000 size 10485760 ipcDesc 0xec8344026d10
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbebe00000 size 10485760 ipcDesc 0xe6dba403cea0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8383c00000 size 10485760 ipcDesc 0xec8344028650
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8384600000 size 10485760 ipcDesc 0xec8344029f90
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbec800000 size 2097152 ipcDesc 0xe6dba403e7e0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8385000000 size 10485760 ipcDesc 0xec834402b8d0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbeca00000 size 2097152 ipcDesc 0xe6dba4040120
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8385a00000 size 10485760 ipcDesc 0xec834402d210
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbecc00000 size 2097152 ipcDesc 0xe6dba4041a60
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8386400000 size 10485760 ipcDesc 0xec834402eb50
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbece00000 size 2097152 ipcDesc 0xe6dba40433a0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8386e00000 size 10485760 ipcDesc 0xec83440304a0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbed000000 size 2097152 ipcDesc 0xe6dba4044ce0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8387800000 size 10485760 ipcDesc 0xec8344031de0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbed200000 size 2097152 ipcDesc 0xe6dba4046620
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8388200000 size 10485760 ipcDesc 0xec8344033720
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbed400000 size 2097152 ipcDesc 0xe6dba4047f60
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8388c00000 size 10485760 ipcDesc 0xec8344035060
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbed600000 size 2097152 ipcDesc 0xe6dba40498a0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8389600000 size 10485760 ipcDesc 0xec83440369a0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbed800000 size 2097152 ipcDesc 0xe6dba404b1e0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbeda00000 size 2097152 ipcDesc 0xe6dba404cb20
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838a000000 size 10485760 ipcDesc 0xec83440382e0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838aa00000 size 10485760 ipcDesc 0xec8344039c20
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbedc00000 size 2097152 ipcDesc 0xe6dba404e460
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838b400000 size 10485760 ipcDesc 0xec834403b560
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbede00000 size 2097152 ipcDesc 0xe6dba404fda0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838be00000 size 10485760 ipcDesc 0xec834403cea0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbee000000 size 2097152 ipcDesc 0xe6dba40516f0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbee200000 size 2097152 ipcDesc 0xeaks-phx13gpc04d-40179719-vmss0009UO:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838c800000 size 2097152 ipcDesc 0xec834403e7e0
+6dba4053030
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838ca00000 size 2097152 ipcDesc 0xec8344040120
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbee400000 size 2097152 ipcDesc 0xe6dba4054970
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838cc00000 size 2097152 ipcDesc 0xec8344041a60
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbee600000 size 2097152 ipcDesc 0xe6dba40562b0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838ce00000 size 2097152 ipcDesc 0xec83440433a0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbee800000 size 2097152 ipcDesc 0xe6dba4057bf0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbeea00000 size 2097152 ipcDesc 0xe6dba4059530
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838d000000 size 2097152 ipcDesc 0xec8344044ce0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838d200000 size 2097152 ipcDesc 0xeaks-phx13gpc04d-40179719-vmss0009UO:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbeec00000 size 2097152 ipcDesc 0xe6dba405ae70
+c8344046620
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbeee00000 size 2097152 ipcDesc 0xe6dba405c7b0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838d400000 size 2097152 ipcDesc 0xec8344047f60
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838d600000 size 2097152 ipcDesc 0xec83440498a0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbef000000 size 2097152 ipcDesc 0xe6dba405e0f0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838d800000 size 2097152 ipcDesc 0xec834404b1e0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbef200000 size 2097152 ipcDesc 0xe6dba405fa30
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbef400000 size 2097152 ipcDesc 0xe6dba4061380
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838da00000 size 2097152 ipcDesc 0xec834404cb20
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838dc00000 size 2097152 ipcDesc 0xec834404e460
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbef600000 size 2097152 ipcDesc 0xe6dba4062cc0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 24/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838de00000 size 2097152 ipcDesc 0xeaks-phx13gpc04d-40179719-vmss0009UO:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbef800000 size 2097152 ipcDesc 0xe6dba4064600
+c834404fda0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 25/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbefa00000 size 2097152 ipcDesc 0xe6dba4065f40
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838e000000 size 2097152 ipcDesc 0xec83440516f0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 26/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbefc00000 size 2097152 ipcDesc 0xe6dba4067880
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838e200000 size 2097152 ipcDesc 0xec8344053030
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 27/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbefe00000 size 2097152 ipcDesc 0xe6dba40691c0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838e400000 size 2097152 ipcDesc 0xec8344054970
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 28/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838e600000 size 2097152 ipcDesc 0xec83440562b0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbf0000000 size 2097152 ipcDesc 0xe6dba406ab00
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 16/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 29/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbf0200000 size 2097152 ipcDesc 0xe6dba406c440
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838e800000 size 2097152 ipcDesc 0xec8344057bf0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 30/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838ea00000 size 2097152 ipcDesc 0xec8344059530
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbf0400000 size 2097152 ipcDesc 0xe6dba406dd80
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 18/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 31/0 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838ec00000 size 2097152 ipcDesc 0xec834405ae70
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dbf0600000 size 2097152 ipcDesc 0xe6dba406f6c0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 19/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838ee00000 size 2097152 ipcDesc 0xec834405c7b0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838f000000 size 2097152 ipcDesc 0xec834405e0f0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838f200000 size 2097152 ipcDesc 0xec834405fa30
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838f400000 size 2097152 ipcDesc 0xec8344061380
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838f600000 size 2097152 ipcDesc 0xec8344062cc0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 24/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838f800000 size 2097152 ipcDesc 0xec8344064600
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 25/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838fa00000 size 2097152 ipcDesc 0xec8344065f40
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 26/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838fc00000 size 2097152 ipcDesc 0xec8344067880
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 27/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec838fe00000 size 2097152 ipcDesc 0xec83440691c0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 28/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8390000000 size 2097152 ipcDesc 0xec834406ab00
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 29/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8390200000 size 2097152 ipcDesc 0xec834406c440
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 30/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8390400000 size 2097152 ipcDesc 0xec834406dd80
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 31/0 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8390600000 size 2097152 ipcDesc 0xec834406f6c0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba400b750 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834400b6d0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec8390800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbf0800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba403e830 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834403e830 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec8391200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbf1200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba400d480 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834400d400 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec8391400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbf1400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4040170 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344040170 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec8391e00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbf1e00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba400ee70 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834400ee10 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec8392000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbf2000000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4041ab0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344041ab0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec8392a00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbf2a00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4010840 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344010800 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec8392c00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbf2c00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40433f0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440433f0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec8393600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbf3600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4012210 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440121d0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec8393800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbf3800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4044d30 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344044d30 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec8394200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbf4200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4013be0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344013ba0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec8394400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbf4400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4046670 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344046670 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec8394e00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbf4e00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4015570 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344015570 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec8395000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbf5000000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4047fb0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344047fb0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec8395a00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbf5a00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4016f00 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344016f00 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec8395c00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbf5c00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40498f0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440498f0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec8396600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbf6600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4018840 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344018840 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec8396800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbf6800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba404b230 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834404b230 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec8397200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbf7200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba401a180 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834401a180 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec8397400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbf7400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba404cb70 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834404cb70 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec8397e00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbf7e00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba401bac0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834401bac0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec8398000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbf8000000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba404e4b0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834404e4b0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec8398a00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbf8a00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba401d400 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834401d400 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec8398c00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbf8c00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba404fdf0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834404fdf0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec8399600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbf9600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba401eca0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834401eca0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec8399800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbf9800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4051740 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344051740 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec839a200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbfa200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4020860 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344020860 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec839a400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbfa400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4053080 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344053080 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec839ae00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbfae00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40221a0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440221a0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec839b000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbfb000000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40549c0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440549c0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec839ba00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbfba00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4023ae0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344023ae0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec839bc00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbfbc00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344056300 to fd 100 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4056300 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbfc600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec839c600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344025420 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4025420 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6dbfc800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec839c800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344057c40 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4057c40 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbfd200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec839d200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344026d60 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4026d60 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x434a00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x434a00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344059580 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4059580 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbfd400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec839d400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440286a0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40286a0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x435400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x435400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834405aec0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba405aec0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbfd600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec839d600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344029fe0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4029fe0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x435e00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x435e00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834405c800 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba405c800 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbfd800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec839d800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834402b920 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba402b920 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x436800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x436800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834405e140 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba405e140 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6dbfda00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec839da00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834402d260 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba402d260 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x437200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x437200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834405fa80 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba405fa80 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0x437c00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0x437c00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834402eba0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba402eba0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x437e00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x437e00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440613d0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40613d0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0x438800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0x438800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440304f0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40304f0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x438a00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x438a00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344062d10 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4062d10 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0x439400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0x439400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344031e30 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4031e30 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x439600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x439600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344064650 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4064650 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0x43a000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344033770 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0x43a000000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4033770 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x43a200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x43a200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344065f90 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4065f90 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0x43ac00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0x43ac00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440350b0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40350b0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x43ae00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x43ae00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440678d0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40678d0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0x43b800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0x43b800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440369f0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40369f0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x43ba00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x43ba00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344069210 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4069210 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0x43c400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0x43c400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344038330 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4038330 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x43c600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x43c600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834406ab50 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba406ab50 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0x43d000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344039c70 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0x43d000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x43d200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4039c70 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834406c490 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x43d200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0x43dc00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba406c490 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834403b5b0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0x43dc00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x43de00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba403b5b0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834406ddd0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x43de00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0x43e800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba406ddd0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834403cef0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0x43e800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0x43ea00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba403cef0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834406f710 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0x43ea00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0x43f400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba406f710 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0x43f400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daef800000 size 10485760 ipcDesc 0xaks-phx13gpc04d-40179719-vmss0009UO:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec828f800000 size 10485760 ipcDesc 0xe6dba4071010
+ec8344071010
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8290200000 size 10485760 ipcDesc 0xec8344072b30
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf0200000 size 10485760 ipcDesc 0xe6dba4072b30
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8290c00000 size 10485760 ipcDesc 0xec8344074470
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf0c00000 size 10485760 ipcDesc 0xe6dba4074470
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8291600000 size 10485760 ipcDesc 0xec8344075db0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf1600000 size 10485760 ipcDesc 0xe6dba4075db0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8292000000 size 10485760 ipcDesc 0xec83440776f0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf2000000 size 10485760 ipcDesc 0xe6dba40776f0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8292a00000 size 10485760 ipcDesc 0xec8344079030
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf2a00000 size 10485760 ipcDesc 0xe6dba4079030
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8293400000 size 10485760 ipcDesc 0xec834407a970
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf3400000 size 10485760 ipcDesc 0xe6dba407a970
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8293e00000 size 10485760 ipcDesc 0xec834407c2b0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8294800000 size 10485760 ipcDesc 0xec834407dbf0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf3e00000 size 10485760 ipcDesc 0xe6dba407c2b0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8295200000 size 10485760 ipcDesc 0xaks-phx13gpc04d-40179719-vmss0009UO:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf4800000 size 10485760 ipcDesc 0xec834407f530
+e6dba407dbf0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf5200000 size 10485760 ipcDesc 0xe6dba407f530
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8295c00000 size 10485760 ipcDesc 0xec8344080e80
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf5c00000 size 10485760 ipcDesc 0xe6dba4080e80
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8296600000 size 10485760 ipcDesc 0xec83440827c0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf6600000 size 10485760 ipcDesc 0xe6dba40827c0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8297000000 size 10485760 ipcDesc 0xec8344084100
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8297a00000 size 10485760 ipcDesc 0xaks-phx13gpc04d-40179719-vmss0009UO:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf7000000 size 10485760 ipcDesc 0xec8344085a40
+e6dba4084100
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf7a00000 size 10485760 ipcDesc 0xe6dba4085a40
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8298400000 size 10485760 ipcDesc 0xec8344087380
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8298e00000 size 10485760 ipcDesc 0xec8344088cc0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf8400000 size 10485760 ipcDesc 0xe6dba4087380
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf8e00000 size 10485760 ipcDesc 0xe6dba4088cc0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec8299800000 size 10485760 ipcDesc 0xec834408a600
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec829a200000 size 10485760 ipcDesc 0xec834408bf40
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daf9800000 size 10485760 ipcDesc 0xe6dba408a600
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dafa200000 size 10485760 ipcDesc 0xe6dba408bf40
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec829ac00000 size 10485760 ipcDesc 0xec834408d880
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dafac00000 size 10485760 ipcDesc 0xe6dba408d880
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec829b600000 size 10485760 ipcDesc 0xec834408f1c0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec829c000000 size 10485760 ipcDesc 0xec8344090b10
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dafb600000 size 10485760 ipcDesc 0xe6dba408f1c0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dafc000000 size 10485760 ipcDesc 0xe6dba4090b10
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec829ca00000 size 10485760 ipcDesc 0xec8344092450
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec829d400000 size 10485760 ipcDesc 0xec8344093d90
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dafca00000 size 10485760 ipcDesc 0xe6dba4092450
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dafd400000 size 10485760 ipcDesc 0xe6dba4093d90
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec829de00000 size 10485760 ipcDesc 0xec83440956d0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dafde00000 size 10485760 ipcDesc 0xe6dba40956d0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec829e800000 size 10485760 ipcDesc 0xec8344097010
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec829f200000 size 10485760 ipcDesc 0xec8344098950
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6dafe800000 size 10485760 ipcDesc 0xe6dba4097010
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daff200000 size 10485760 ipcDesc 0xe6dba4098950
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a0000000 size 10485760 ipcDesc 0xec834409a290
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a0a00000 size 10485760 ipcDesc 0xec834409be50
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db00000000 size 10485760 ipcDesc 0xe6dba409a290
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db00a00000 size 10485760 ipcDesc 0xe6dba409be50
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a1400000 size 10485760 ipcDesc 0xec834409d790
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a1e00000 size 10485760 ipcDesc 0xec834409f0d0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db01400000 size 10485760 ipcDesc 0xe6dba409d790
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a2800000 size 10485760 ipcDesc 0xec83440a0a20
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db01e00000 size 10485760 ipcDesc 0xe6dba409f0d0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a3200000 size 10485760 ipcDesc 0xec83440a2360
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db02800000 size 10485760 ipcDesc 0xe6dba40a0a20
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 00/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db03200000 size 10485760 ipcDesc 0xe6dba40a2360
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec829fc00000 size 2097152 ipcDesc 0xec83440a3ca0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 01/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 00/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec829fe00000 size 2097152 ipcDesc 0xec83440a55e0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daffc00000 size 2097152 ipcDesc 0xe6dba40a3ca0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 02/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 01/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a3c00000 size 2097152 ipcDesc 0xec83440a6c00
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6daffe00000 size 2097152 ipcDesc 0xe6dba40a55e0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 03/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 02/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a3e00000 size 2097152 ipcDesc 0xec83440a8540
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db03c00000 size 2097152 ipcDesc 0xe6dba40a6c00
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 04/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 03/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a4000000 size 2097152 ipcDesc 0xeaks-phx13gpc04d-40179719-vmss0009UO:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db03e00000 size 2097152 ipcDesc 0xe6dba40a8540
+c83440a9e80
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 04/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 05/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db04000000 size 2097152 ipcDesc 0xe6dba40a9e80
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a4200000 size 2097152 ipcDesc 0xec83440ab7c0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 05/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 06/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db04200000 size 2097152 ipcDesc 0xe6dba40ab7c0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a4400000 size 2097152 ipcDesc 0xec83440ad100
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 06/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 07/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a4600000 size 2097152 ipcDesc 0xec83440aea40
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db04400000 size 2097152 ipcDesc 0xe6dba40ad100
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 08/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 07/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a4800000 size 2097152 ipcDesc 0xec83440b0380
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db04600000 size 2097152 ipcDesc 0xe6dba40aea40
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 09/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 08/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a4a00000 size 2097152 ipcDesc 0xec83440b1cc0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db04800000 size 2097152 ipcDesc 0xe6dba40b0380
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 10/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 09/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db04a00000 size 2097152 ipcDesc 0xe6dba40b1cc0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a4c00000 size 2097152 ipcDesc 0xeaks-phx13gpc04d-40179719-vmss0009UO:10356:10356 [0] NCCL INFO Channel 10/1 : 0[0] -> 1[1] via P2P/CUMEM
+c83440b3600
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 11/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db04c00000 size 2097152 ipcDesc 0xeaks-phx13gpc04d-40179719-vmss0009UO:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a4e00000 size 2097152 ipcDesc 0xec83440b4f40
+6dba40b3600
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 12/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 11/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db04e00000 size 2097152 ipcDesc 0xeaks-phx13gpc04d-40179719-vmss0009UO:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a5000000 size 2097152 ipcDesc 0xe6dba40b4f40
+c83440b6880
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 12/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 13/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db05000000 size 2097152 ipcDesc 0xe6dba40b6880
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a5200000 size 2097152 ipcDesc 0xec83440b81c0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 13/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 14/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db05200000 size 2097152 ipcDesc 0xe6dba40b81c0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a5400000 size 2097152 ipcDesc 0xec83440b9b00
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 14/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 15/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db05400000 size 2097152 ipcDesc 0xe6dba40b9b00
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a5600000 size 2097152 ipcDesc 0xec83440bb440
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 16/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 15/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a5800000 size 2097152 ipcDesc 0xeaks-phx13gpc04d-40179719-vmss0009UO:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db05600000 size 2097152 ipcDesc 0xe6dba40bb440
+c83440bcd80
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 16/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 17/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db05800000 size 2097152 ipcDesc 0xe6dba40bcd80
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a5a00000 size 2097152 ipcDesc 0xec83440be6c0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 17/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 18/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a5c00000 size 2097152 ipcDesc 0xec83440c0000
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db05a00000 size 2097152 ipcDesc 0xe6dba40be6c0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 19/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 18/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db05c00000 size 2097152 ipcDesc 0xe6dba40c0000
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a5e00000 size 2097152 ipcDesc 0xec83440c1950
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 19/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 20/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db05e00000 size 2097152 ipcDesc 0xe6dba40c1950
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a6000000 size 2097152 ipcDesc 0xec83440c3290
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 21/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 20/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db06000000 size 2097152 ipcDesc 0xe6dba40c3290
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 21/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a6200000 size 2097152 ipcDesc 0xec83440c4bd0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 22/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db06200000 size 2097152 ipcDesc 0xeaks-phx13gpc04d-40179719-vmss0009UO:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a6400000 size 2097152 ipcDesc 0xec83440c6510
+6dba40c4bd0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 23/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 22/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db06400000 size 2097152 ipcDesc 0xe6dba40c6510
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a6600000 size 2097152 ipcDesc 0xec83440c7e50
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 23/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 24/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a6800000 size 2097152 ipcDesc 0xec83440c9790
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db06600000 size 2097152 ipcDesc 0xe6dba40c7e50
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 25/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 24/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a6a00000 size 2097152 ipcDesc 0xec83440cb0d0
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db06800000 size 2097152 ipcDesc 0xe6dba40c9790
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 26/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 25/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a6c00000 size 2097152 ipcDesc 0xeaks-phx13gpc04d-40179719-vmss0009UO:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db06a00000 size 2097152 ipcDesc 0xec83440cca10
+6dba40cb0d0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 26/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 27/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db06c00000 size 2097152 ipcDesc 0xe6dba40cca10
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a6e00000 size 2097152 ipcDesc 0xec83440ce350
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 27/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 28/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db06e00000 size 2097152 ipcDesc 0xeaks-phx13gpc04d-40179719-vmss0009UO:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a7000000 size 2097152 ipcDesc 0xec83440cfc90
+6dba40ce350
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 28/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 29/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db07000000 size 2097152 ipcDesc 0xe6dba40cfc90
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a7200000 size 2097152 ipcDesc 0xec83440d15e0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 29/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 30/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db07200000 size 2097152 ipcDesc 0xe6dba40d15e0
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a7400000 size 2097152 ipcDesc 0xec83440d2f20
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 30/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Channel 31/1 : 1[1] -> 0[0] via P2P/CUMEM
+[REDACTED: GPU hostname]:10357:10390 [1] NCCL INFO Allocated shareable buffer 0xec82a7600000 size 2097152 ipcDesc 0xec83440d8c70
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db07400000 size 2097152 ipcDesc 0xe6dba40d2f20
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Channel 31/1 : 0[0] -> 1[1] via P2P/CUMEM
+[REDACTED: GPU hostname]:10356:10391 [0] NCCL INFO Allocated shareable buffer 0xe6db07600000 size 2097152 ipcDesc 0xe6dba40d8c70
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344071060 to fd 100 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4071060 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db07800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82a7800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440a3cf0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40a3cf0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db08200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82a8200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344072b80 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4072b80 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db08400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82a8400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440a5630 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40a5630 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db08e00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82a8e00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440744c0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40744c0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db09000000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82a9000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440a6c50 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40a6c50 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db09a00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82a9a00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344075e00 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4075e00 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db09c00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82a9c00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440a8590 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40a8590 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db0a600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82aa600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344077740 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4077740 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db0a800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82aa800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440a9ed0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40a9ed0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db0b200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82ab200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344079080 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4079080 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db0b400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82ab400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440ab810 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40ab810 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db0be00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82abe00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834407a9c0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba407a9c0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db0c000000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82ac000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440ad150 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40ad150 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db0ca00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82aca00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834407c300 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba407c300 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db0cc00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82acc00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440aea90 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40aea90 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db0d600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82ad600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834407dc40 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba407dc40 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db0d800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82ad800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440b03d0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40b03d0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db0e200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82ae200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834407f580 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba407f580 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db0e400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82ae400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440b1d10 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40b1d10 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db0ee00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82aee00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344080ed0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4080ed0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db0f000000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82af000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440b3650 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40b3650 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db0fa00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82afa00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344082810 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4082810 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db0fc00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82afc00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440b4f90 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40b4f90 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db10600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82b0600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344084150 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4084150 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db10800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82b0800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440b68d0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40b68d0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db11200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82b1200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344085a90 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4085a90 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db11400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82b1400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440b8210 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40b8210 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db11e00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82b1e00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440873d0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40873d0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db12000000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82b2000000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40b9b50 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82b2a00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4088d10 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82b2c00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40bb490 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82b3600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba408a650 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82b3800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40bcdd0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82b4200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba408bf90 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82b4400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440b9b50 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40be710 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82b4e00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db12a00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba408d8d0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344088d10 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82b5000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db12c00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40c0050 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440bb490 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82b5a00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db13600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba408f210 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834408a650 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82b5c00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db13800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40c19a0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440bcdd0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82b6600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db14200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834408bf90 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db14400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440be710 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db14e00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834408d8d0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db15000000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4090b60 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440c0050 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db15a00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82b6800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834408f210 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40c32e0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db15c00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82b7200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440c19a0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40924a0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db16600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82b7400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344090b60 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40c4c20 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db16800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82b7e00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440c32e0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4093de0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db17200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82b8000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440924a0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40c6560 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db17400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82b8a00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440c4c20 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4095720 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db17e00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82b8c00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344093de0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40c7ea0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db18000000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82b9600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440c6560 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba4097060 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db18a00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82b9800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344095720 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40c97e0 to fd 97 on remote peer 0
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82ba200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db18c00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40989a0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440c7ea0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82ba400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db19600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40cb120 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec8344097060 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82bae00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db19800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba409a2e0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440c97e0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82bb000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db1a200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40cca60 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440989a0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82bba00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db1a400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba409bea0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440cb120 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82bbc00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db1ae00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40ce3a0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834409a2e0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82bc600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db1b000000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba409d7e0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440cca60 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82bc800000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db1ba00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40cfce0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834409bea0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82bd200000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db1bc00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba409f120 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440ce3a0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82bd400000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db1c600000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40d1630 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834409d7e0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82bde00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db1c800000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40a0a70 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440cfce0 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82be000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db1d200000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40d2f70 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec834409f120 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82bea00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db1d400000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40a23b0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440d1630 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 10485760 ptr 0xec82bec00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db1de00000
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO UDS converted handle 0xe6dba40d8cc0 to fd 99 on remote peer 0
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440a0a70 to fd 98 on remote peer 1
+[REDACTED: GPU hostname]:10357:10357 [1] NCCL INFO Imported shareable buffer device 1 size 2097152 ptr 0xec82bf600000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db1e000000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440d2f70 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db1ea00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440a23b0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 10485760 ptr 0xe6db1ec00000
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO UDS converted handle 0xec83440d8cc0 to fd 99 on remote peer 1
+[REDACTED: GPU hostname]:10356:10356 [0] NCCL INFO Imported shareable buffer device 0 size 2097152 ptr 0xe6db1f600000
+[rank0]:[W1116 07:39:36.047275350 ProcessGroupNCCL.cpp:4173] Warning: [PG ID 0 PG GUID 0(default_pg) Rank 0] An unbatched P2P op (send/recv) was called on this ProcessGroup with size 2.  In eager initialization mode, unbatched P2P ops are treated as independent collective ops, and are thus serialized with all other ops on this ProcessGroup, including other P2P ops. To avoid serialization, either create additional independent ProcessGroups for the P2P ops or use batched P2P ops. You can squash this warning by setting the environment variable TORCH_NCCL_SHOW_EAGER_INIT_P2P_SERIALIZATION_WARNING to false. (function operator())
+[rank1]:[W1116 07:39:36.047275286 ProcessGroupNCCL.cpp:4173] Warning: [PG ID 0 PG GUID 0(default_pg) Rank 1] An unbatched P2P op (send/recv) was called on this ProcessGroup with size 2.  In eager initialization mode, unbatched P2P ops are treated as independent collective ops, and are thus serialized with all other ops on this ProcessGroup, including other P2P ops. To avoid serialization, either create additional independent ProcessGroups for the P2P ops or use batched P2P ops. You can squash this warning by setting the environment variable TORCH_NCCL_SHOW_EAGER_INIT_P2P_SERIALIZATION_WARNING to false. (function operator())
+{
+  "world_size": 2,
+  "device_type": "cuda",
+  "collectives": {
+    "all_reduce_float32": true,
+    "broadcast_float32": true,
+    "all_gather_float32": true,
+    "ring_p2p_float32": true,
+    "all_reduce_bfloat16": true,
+    "broadcast_bfloat16": true,
+    "all_gather_bfloat16": true,
+    "ring_p2p_bfloat16": true
+  },
+  "bandwidth": [
+    {
+      "size_mib": 16,
+      "p2p_unidirectional_GBps": 149.5206589377743,
+      "ring_exchange_per_direction_GBps": 93.09911011272517,
+      "all_reduce_busbw_GBps": 140.4467197558335,
+      "all_gather_busbw_GBps": 115.60808423327741
+    },
+    {
+      "size_mib": 64,
+      "p2p_unidirectional_GBps": 363.45731800262257,
+      "ring_exchange_per_direction_GBps": 203.24077485080213,
+      "all_reduce_busbw_GBps": 321.74745168906503,
+      "all_gather_busbw_GBps": 266.8117926823439
+    },
+    {
+      "size_mib": 256,
+      "p2p_unidirectional_GBps": 505.41196053873085,
+      "ring_exchange_per_direction_GBps": 304.3695727466002,
+      "all_reduce_busbw_GBps": 455.36974140775584,
+      "all_gather_busbw_GBps": 392.97193744157744
+    },
+    {
+      "size_mib": 1024,
+      "p2p_unidirectional_GBps": 665.0216908775925,
+      "ring_exchange_per_direction_GBps": 612.1370157891382,
+      "all_reduce_busbw_GBps": 556.8162741513634,
+      "all_gather_busbw_GBps": 467.26188371108486
+    }
+  ],
+  "visible_to_physical": [
+    0,
+    1
+  ],
+  "topology_link_gpu0_gpu1": "NV18",
+  "nvlink_topology": true,
+  "peer_access": true,
+  "gate_pass": true,
+  "reasons": []
+}

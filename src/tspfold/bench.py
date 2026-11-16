@@ -190,7 +190,7 @@ def kernel_category(name: str) -> str:
         return "comm"
     if any(s in n for s in ("flash", "fmha", "attention", "sdpa", "softmax")):
         return "attention"
-    if any(s in n for s in ("gemm", "cutlass", "xmma", "cublas", "gemv", "aten::mm", "aten::addmm", "aten::bmm", "matmul")):
+    if any(s in n for s in ("gemm", "cutlass", "xmma", "cublas", "nvjet", "gemv", "aten::mm", "aten::addmm", "aten::bmm", "matmul")):
         return "gemm"
     if any(s in n for s in ("copy", "cat", "elementwise", "silu", "mul", "fill", "memcpy", "memset", "reduce")):
         return "elementwise_copy"
@@ -211,6 +211,8 @@ def profile_breakdown(module, x: torch.Tensor, device: torch.device, n: int) -> 
     cats: dict[str, float] = {}
     kernels, attn_ops = [], {}
     for evt in prof.key_averages():
+        if evt.is_user_annotation:  # CUDA NCCL annotations duplicate the underlying kernel durations.
+            continue
         on_device = evt.device_type == DeviceType.CUDA
         if "scaled_dot_product" in evt.key or "attention" in evt.key.lower() or "flash" in evt.key.lower():
             if not on_device:

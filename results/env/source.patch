@@ -1,0 +1,213 @@
+diff --git a/src/tspfold/bench.py b/src/tspfold/bench.py
+index d2ad689..d438671 100644
+--- a/src/tspfold/bench.py
++++ b/src/tspfold/bench.py
+@@ -190,7 +190,7 @@ def kernel_category(name: str) -> str:
+         return "comm"
+     if any(s in n for s in ("flash", "fmha", "attention", "sdpa", "softmax")):
+         return "attention"
+-    if any(s in n for s in ("gemm", "cutlass", "xmma", "cublas", "gemv", "aten::mm", "aten::addmm", "aten::bmm", "matmul")):
++    if any(s in n for s in ("gemm", "cutlass", "xmma", "cublas", "nvjet", "gemv", "aten::mm", "aten::addmm", "aten::bmm", "matmul")):
+         return "gemm"
+     if any(s in n for s in ("copy", "cat", "elementwise", "silu", "mul", "fill", "memcpy", "memset", "reduce")):
+         return "elementwise_copy"
+@@ -211,6 +211,8 @@ def profile_breakdown(module, x: torch.Tensor, device: torch.device, n: int) ->
+     cats: dict[str, float] = {}
+     kernels, attn_ops = [], {}
+     for evt in prof.key_averages():
++        if evt.is_user_annotation:  # CUDA NCCL annotations duplicate the underlying kernel durations.
++            continue
+         on_device = evt.device_type == DeviceType.CUDA
+         if "scaled_dot_product" in evt.key or "attention" in evt.key.lower() or "flash" in evt.key.lower():
+             if not on_device:
+diff --git a/src/tspfold/dist_utils.py b/src/tspfold/dist_utils.py
+index beb7fcf..d845e5c 100644
+--- a/src/tspfold/dist_utils.py
++++ b/src/tspfold/dist_utils.py
+@@ -23,7 +23,10 @@ def all_gather_stacked(t: torch.Tensor, group: dist.ProcessGroup | None = None)
+     """
+     world = dist.get_world_size(group)
+     out = t.new_empty((world * t.size(0),) + tuple(t.shape[1:]))
+-    dist.all_gather_single(out, t, group=group)
++    gather = getattr(dist, "all_gather_single", None)
++    if gather is None:  # PyTorch before the 2.13 collective API rename.
++        gather = dist.all_gather_into_tensor
++    gather(out, t, group=group)
+     return out.view((world,) + tuple(t.shape))
+ 
+ 
+diff --git a/src/tspfold/env.py b/src/tspfold/env.py
+index 40f3b02..e5e973d 100644
+--- a/src/tspfold/env.py
++++ b/src/tspfold/env.py
+@@ -51,8 +51,11 @@ def nvidia_smi_gpus() -> list[dict]:
+ 
+ 
+ def _norm_bus_id(bus: str) -> str:
+-    # nvidia-smi: 00000000:18:00.0 ; torch: 0000:18:00.0 -> compare on bus:device.function
+-    return bus.lower().split(":", 1)[-1] if bus.count(":") == 2 else bus.lower()
++    # Normalize domain padding without merging devices in distinct PCI domains (e.g. GB200).
++    if bus.count(":") == 2:
++        domain, address = bus.lower().split(":", 1)
++        return f"{int(domain, 16):08x}:{address}"
++    return bus.lower()
+ 
+ 
+ def visible_to_physical() -> list[int | None]:
+@@ -72,6 +75,7 @@ def visible_to_physical() -> list[int | None]:
+ 
+ def parse_topology(topo: str) -> dict[tuple[int, int], str]:
+     """Parse `nvidia-smi topo -m` into {(gpu_i, gpu_j): link} for GPU-GPU entries (e.g. 'NV12', 'PIX', 'SYS')."""
++    topo = re.sub(r"\x1b\[[0-9;]*m", "", topo)  # nvidia-smi underlines headers when TERM is set.
+     lines = [ln.rstrip() for ln in topo.splitlines() if ln.strip()]
+     header = next((ln for ln in lines if re.search(r"\bGPU0\b", ln)), None)
+     if header is None:
+diff --git a/src/tspfold/hwcheck.py b/src/tspfold/hwcheck.py
+index c60183c..ceef596 100644
+--- a/src/tspfold/hwcheck.py
++++ b/src/tspfold/hwcheck.py
+@@ -120,6 +120,7 @@ def main(argv: list[str] | None = None) -> int:
+     out = Path(args.out_dir)
+     sanity = collective_sanity(device)
+     bw = bandwidth(device, [int(s) for s in args.sizes_mib.split(",")], args.iters) if world == 2 else []
++    gate_pass = False
+     if rank == 0:
+         out.mkdir(parents=True, exist_ok=True)
+         env = collect_env(device)
+@@ -149,11 +150,15 @@ def main(argv: list[str] | None = None) -> int:
+         if not all(sanity.values()):
+             reasons.append("collective/P2P sanity failed")
+         gate["gate_pass"] = not reasons
++        gate_pass = gate["gate_pass"]
+         gate["reasons"] = reasons
+         (out / "hw_gate.json").write_text(json.dumps(gate, indent=2))
+         print(json.dumps(gate, indent=2))
++    flag = torch.tensor([int(gate_pass)], device=device)
++    dist.broadcast(flag, src=0)
++    gate_pass = bool(flag.item())
+     dist.destroy_process_group()
+-    return 0
++    return 0 if gate_pass else 1
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/src/tspfold/tsp.py b/src/tspfold/tsp.py
+index d345be6..825ec2e 100644
+--- a/src/tspfold/tsp.py
++++ b/src/tspfold/tsp.py
+@@ -109,10 +109,10 @@ class TSPAttention:
+                     attn[:, :sc, heads] = causal_attention(q[:, :sc], kv[0, :, :s1], kv[1, :, :s1], self.backend)
+                     attn[:, sc:, heads] = causal_attention(q[:, sc:], kv[0, :, :s2], kv[1, :, :s2], self.backend)
+                     del kv  # lines 19-21
+-                del qkv
++                del q, qkv  # Release the view too, before allocating the next owner's buffers.
+                 attn2d = attn.view(-1, hs)
+                 y = torch.mm(attn2d, w_o_t) if y is None else y.addmm_(attn2d, w_o_t)  # line 23
+-                del attn, w, work, w_qkv, w_o_t
++                del attn2d, attn, w, work, w_qkv, w_o_t
+         for work in deferred:
+             work.wait()
+         return y.view(bsz, s_loc, sh.hidden)
+diff --git a/tests/test_harness.py b/tests/test_harness.py
+index a9f4def..d860ee7 100644
+--- a/tests/test_harness.py
++++ b/tests/test_harness.py
+@@ -1,10 +1,14 @@
++import contextlib
+ import json
+ import os
+ import subprocess
+ import sys
++from types import SimpleNamespace
+ 
+ import pytest
++import torch
+ 
++from tspfold import bench, dist_utils, env as env_utils, hwcheck
+ from tspfold.env import parse_topology
+ 
+ TOPO_NVLINK = """\
+@@ -35,6 +39,70 @@ def test_parse_topology():
+     assert (0, 3) not in links  # NIC columns are not GPUs
+     assert parse_topology(TOPO_PCIE)[(0, 1)] == "PHB"
+     assert parse_topology("") == {}
++    styled = TOPO_NVLINK.replace("\tGPU0", "\t\x1b[4mGPU0", 1).replace("GPU NUMA ID\n", "GPU NUMA ID\x1b[0m\n", 1)
++    assert parse_topology(styled) == links
++
++
++def test_visible_to_physical_preserves_pci_domains(monkeypatch):
++    domains = [8, 9, 24, 25]
++    monkeypatch.setattr(env_utils, "nvidia_smi_gpus", lambda: [
++        {"index": i, "pci_bus_id": f"{domain:08x}:01:00.0"} for i, domain in enumerate(domains)
++    ])
++    monkeypatch.setattr(torch.cuda, "is_available", lambda: True)
++    monkeypatch.setattr(torch.cuda, "device_count", lambda: 2)
++    monkeypatch.setattr(torch.cuda, "get_device_properties", lambda i: SimpleNamespace(
++        pci_domain_id=domains[1 - i], pci_bus_id=1, pci_device_id=0,
++    ))
++    assert env_utils.visible_to_physical() == [1, 0]
++
++
++@pytest.mark.parametrize("legacy", [False, True])
++def test_all_gather_stacked_collective_api_compatibility(monkeypatch, legacy):
++    def gather(out, value, group=None):
++        out.copy_(torch.cat([value, value + 10], dim=0))
++
++    api = "all_gather_into_tensor" if legacy else "all_gather_single"
++    other = "all_gather_single" if legacy else "all_gather_into_tensor"
++    monkeypatch.setattr(dist_utils.dist, api, gather, raising=False)
++    monkeypatch.delattr(dist_utils.dist, other, raising=False)
++    monkeypatch.setattr(dist_utils.dist, "get_world_size", lambda group: 2)
++    value = torch.arange(6).view(2, 3)
++    torch.testing.assert_close(dist_utils.all_gather_stacked(value), torch.stack([value, value + 10]))
++
++
++def test_hwcheck_returns_failure_when_gate_fails(monkeypatch, tmp_path):
++    monkeypatch.setattr(hwcheck, "init_from_env", lambda device: (0, 2, torch.device("cpu")))
++    monkeypatch.setattr(hwcheck, "collective_sanity", lambda device: {"all_reduce": True})
++    monkeypatch.setattr(hwcheck, "bandwidth", lambda *args: [])
++    monkeypatch.setattr(hwcheck, "collect_env", lambda device: {})
++    monkeypatch.setattr(hwcheck, "run_cmd", lambda cmd: None)
++    monkeypatch.setattr(hwcheck.dist, "broadcast", lambda tensor, src: None)
++    monkeypatch.setattr(hwcheck.dist, "destroy_process_group", lambda: None)
++    assert hwcheck.main(["--device", "cpu", "--out-dir", str(tmp_path)]) == 1
++    gate = json.loads((tmp_path / "hw_gate.json").read_text())
++    assert not gate["gate_pass"] and "CUDA not used" in gate["reasons"]
++
++
++def test_profile_counts_kernels_not_cuda_annotations(monkeypatch):
++    from torch.autograd import DeviceType
++
++    events = [
++        SimpleNamespace(
++            key=name, device_type=DeviceType.CUDA, count=1,
++            self_device_time_total=us, is_user_annotation=annotation,
++        )
++        for name, us, annotation in [
++            ("nvjet_sm100_tst_128x64_64x10_2x2_2cta_h_bz_NNT", 5.0, False),
++            ("ncclDevKernel_AllReduce_Sum_bf16_RING_LL", 12.0, False),
++            ("nccl:all_reduce", 12.0, True),
++        ]
++    ]
++    prof = SimpleNamespace(key_averages=lambda: events)
++    monkeypatch.setattr(torch.profiler, "profile", lambda **kwargs: contextlib.nullcontext(prof))
++    monkeypatch.setattr(bench, "synchronize", lambda device: None)
++    result = bench.profile_breakdown(lambda x: x, torch.ones(1), torch.device("cuda"), 1)
++    assert result["category_us_per_iter"] == {"gemm": 5.0, "comm": 12.0}
++    assert len(result["top_kernels"]) == 2
+ 
+ 
+ @pytest.mark.distributed
+@@ -58,7 +126,11 @@ def test_sweep_isolates_single_rank_oom(tmp_path):
+     assert {r["seq_len"] for r in by_status["oom"]} == {16} and len(by_status["oom"]) == 2
+     assert {r["seq_len"] for r in by_status["skipped"]} == {32} and len(by_status["skipped"]) == 2
+     assert all(r["elapsed_s"] < 60 for r in by_status["oom"])
+-    assert all([s["rank"] for s in r["rank_status"]] == [1] for r in by_status["oom"])
++    for r in by_status["oom"]:
++        assert [s["rank"] for s in r["rank_status"] if s["status"] == "oom"] == [1]
++        for s in r["rank_status"]:
++            if s["rank"] == 0:  # Gloo may report peer disconnection before torchrun terminates it.
++                assert s["status"] == "error" and "Connection closed by peer" in s["error"]
+ 
+     out = subprocess.run([sys.executable, "-m", "tspfold.analyze", "--results-dir", str(tmp_path),
+                           "--out-dir", str(tmp_path / "analysis"), "--no-plots"],

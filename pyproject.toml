@@ -11,6 +11,7 @@ dependencies = [
 
 [project.optional-dependencies]
 analysis = ["matplotlib>=3.9"]
+cudnn = ["nvidia-cudnn-frontend==1.23.0; sys_platform == 'linux'"]
 
 [dependency-groups]
 dev = ["pytest>=8.3"]

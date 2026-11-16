@@ -1,0 +1,26 @@
+{
+  "gpu_d2": {
+    "records": 277,
+    "passed": 277,
+    "max_abs_err": 0.02003591390988202,
+    "max_l2_rel_err": 0.00433032986219533
+  },
+  "smoke_d1": {
+    "records": 12,
+    "passed": 12,
+    "max_abs_err": 1.1626522461449795e-06,
+    "max_l2_rel_err": 2.2896902870994486e-07
+  },
+  "cudnn_frontend_d2": {
+    "records": 61,
+    "passed": 61,
+    "max_abs_err": 0.017130537025595416,
+    "max_l2_rel_err": 0.0041895980601147145
+  },
+  "cudnn_frontend_d1": {
+    "records": 72,
+    "passed": 72,
+    "max_abs_err": 0.013056411296626713,
+    "max_l2_rel_err": 0.0037729428118389234
+  }
+}

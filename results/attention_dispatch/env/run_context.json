@@ -1,0 +1,8 @@
+{
+  "timestamp_utc": "2026-11-16T06:57:42.740906+00:00",
+  "worker_sha256": "ebae82c079d536dd4c8fd91d692a08930fa469fccab954cf1856131343298f60",
+  "worker_replaced": true,
+  "comparison_policy": "All backend controls and native-cuDNN cases run on this replacement worker; original main/ablation measurements are retained separately.",
+  "python": "3.12.3",
+  "post_measurement_change": "Strengthened only the cache-lifetime regression test to assert allocated GPU storage returns to baseline; all measured runtime-module hashes are unchanged. The focused eight-case GPU suite passed again."
+}

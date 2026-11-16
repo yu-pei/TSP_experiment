@@ -51,8 +51,11 @@ def nvidia_smi_gpus() -> list[dict]:
 
 
 def _norm_bus_id(bus: str) -> str:
-    # nvidia-smi: 00000000:18:00.0 ; torch: 0000:18:00.0 -> compare on bus:device.function
-    return bus.lower().split(":", 1)[-1] if bus.count(":") == 2 else bus.lower()
+    # Normalize domain padding without merging devices in distinct PCI domains (e.g. GB200).
+    if bus.count(":") == 2:
+        domain, address = bus.lower().split(":", 1)
+        return f"{int(domain, 16):08x}:{address}"
+    return bus.lower()
 
 
 def visible_to_physical() -> list[int | None]:
@@ -72,6 +75,7 @@ def visible_to_physical() -> list[int | None]:
 
 def parse_topology(topo: str) -> dict[tuple[int, int], str]:
     """Parse `nvidia-smi topo -m` into {(gpu_i, gpu_j): link} for GPU-GPU entries (e.g. 'NV12', 'PIX', 'SYS')."""
+    topo = re.sub(r"\x1b\[[0-9;]*m", "", topo)  # nvidia-smi underlines headers when TERM is set.
     lines = [ln.rstrip() for ln in topo.splitlines() if ln.strip()]
     header = next((ln for ln in lines if re.search(r"\bGPU0\b", ln)), None)
     if header is None:
@@ -97,6 +101,7 @@ def collect_env(device: torch.device | None = None) -> dict:
         "torch": torch.__version__,
         "numpy": _version("numpy"),
         "flash_attn": _version("flash-attn") or _version("flash_attn"),
+        "cudnn_frontend": _version("nvidia-cudnn-frontend"),
         "torch_cuda": torch.version.cuda,
         "cudnn": torch.backends.cudnn.version() if cuda else None,
         "nccl": ".".join(map(str, torch.cuda.nccl.version())) if cuda else None,

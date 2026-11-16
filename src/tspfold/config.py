@@ -20,8 +20,8 @@ DTYPES: dict[str, torch.dtype] = {
 METHODS = ("tp", "tsp")
 BLOCKS = ("attn", "mlp")
 # "sdpa" lets PyTorch pick; "flash"/"efficient"/"math"/"cudnn" restrict SDPA to one backend;
-# "flash_attn" uses the optional Dao-AILab package; "naive" is explicit matmul-softmax.
-ATTN_BACKENDS = ("sdpa", "flash", "efficient", "math", "cudnn", "flash_attn", "naive")
+# "cudnn_frontend" uses native lower-right cuDNN masking; "flash_attn" uses Dao-AILab's package.
+ATTN_BACKENDS = ("sdpa", "flash", "efficient", "math", "cudnn", "cudnn_frontend", "flash_attn", "naive")
 
 
 class ConfigError(ValueError):

@@ -1,0 +1,3 @@
+/tmp/tspfold-c92f5b03/kernel-dispatch/.venv/bin/python -m tspfold.sweep --config results/native_bucketing/env/sweep_trial_prefix_1.json --results-dir results/native_bucketing
+/tmp/tspfold-c92f5b03/kernel-dispatch/.venv/bin/python -m tspfold.sweep --config results/native_bucketing/env/sweep_trial_prefix_2.json --results-dir results/native_bucketing
+/tmp/tspfold-c92f5b03/kernel-dispatch/.venv/bin/python -m tspfold.sweep --config configs/sweep_cudnn_bucketing.json --results-dir results/native_bucketing

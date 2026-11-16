@@ -120,6 +120,7 @@ def main(argv: list[str] | None = None) -> int:
     out = Path(args.out_dir)
     sanity = collective_sanity(device)
     bw = bandwidth(device, [int(s) for s in args.sizes_mib.split(",")], args.iters) if world == 2 else []
+    gate_pass = False
     if rank == 0:
         out.mkdir(parents=True, exist_ok=True)
         env = collect_env(device)
@@ -149,11 +150,15 @@ def main(argv: list[str] | None = None) -> int:
         if not all(sanity.values()):
             reasons.append("collective/P2P sanity failed")
         gate["gate_pass"] = not reasons
+        gate_pass = gate["gate_pass"]
         gate["reasons"] = reasons
         (out / "hw_gate.json").write_text(json.dumps(gate, indent=2))
         print(json.dumps(gate, indent=2))
+    flag = torch.tensor([int(gate_pass)], device=device)
+    dist.broadcast(flag, src=0)
+    gate_pass = bool(flag.item())
     dist.destroy_process_group()
-    return 0
+    return 0 if gate_pass else 1
 
 
 if __name__ == "__main__":

@@ -1,0 +1,16 @@
+{
+  "d2": {
+    "records": 49,
+    "passed": 49,
+    "max_abs_err": 0.021752198149814994,
+    "max_l2_rel_err": 0.0041895980601147145,
+    "max_worst_tol_ratio": 0.5689410241855436
+  },
+  "d1": {
+    "records": 48,
+    "passed": 48,
+    "max_abs_err": 0.01369222999712294,
+    "max_l2_rel_err": 0.0037729428118389234,
+    "max_worst_tol_ratio": 0.33907439372894355
+  }
+}

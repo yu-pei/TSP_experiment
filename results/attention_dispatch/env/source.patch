@@ -1,0 +1,849 @@
+diff --git a/Makefile b/Makefile
+index 911a159..525aae9 100644
+--- a/Makefile
++++ b/Makefile
+@@ -10,7 +10,7 @@ REF_THREADS ?= 8
+ PORT ?= $(shell $(PY) -c "from tspfold.launch import free_port; print(free_port())")
+ TORCHRUN = $(PY) -m torch.distributed.run --nnodes=1 --nproc_per_node=$(NPROC) --master_addr=127.0.0.1 --master_port=$(PORT)
+ 
+-.PHONY: help test hw-check correctness-gpu gpu-smoke sweep-main sweep-long sweep-ablation analyze report
++.PHONY: help test hw-check correctness-gpu gpu-smoke sweep-main sweep-long sweep-ablation sweep-attention-cudnn analyze report
+ 
+ help:
+ 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | sed 's/:.*## /\t/'
+@@ -40,6 +40,10 @@ sweep-long: ## T11: extend B=1 toward the memory limit
+ sweep-ablation: ## T10/T11: TSP overlap on/off and head-bucket ablation
+ 	$(PY) -m tspfold.sweep --config configs/sweep_ablation.json --results-dir $(RESULTS) 2>&1 | tee -a $(RESULTS)/sweep_ablation.log
+ 
++sweep-attention-cudnn: ## Matched attention with the optional native cuDNN backend (CUDA FP16/BF16)
++	mkdir -p $(RESULTS)
++	$(PY) -m tspfold.sweep --config configs/sweep_attention_cudnn.json --results-dir $(RESULTS) 2>&1 | tee -a $(RESULTS)/sweep_attention_cudnn.log
++
+ analyze: ## T12: summary tables, matched ratios, figures
+ 	$(PY) -m tspfold.analyze --results-dir $(RESULTS) --out-dir $(RESULTS)/analysis
+ 
+diff --git a/pyproject.toml b/pyproject.toml
+index fbae653..d677e50 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -11,6 +11,7 @@ dependencies = [
+ 
+ [project.optional-dependencies]
+ analysis = ["matplotlib>=3.9"]
++cudnn = ["nvidia-cudnn-frontend==1.23.0; sys_platform == 'linux'"]
+ 
+ [dependency-groups]
+ dev = ["pytest>=8.3"]
+diff --git a/src/tspfold/bench.py b/src/tspfold/bench.py
+index d2ad689..d438671 100644
+--- a/src/tspfold/bench.py
++++ b/src/tspfold/bench.py
+@@ -190,7 +190,7 @@ def kernel_category(name: str) -> str:
+         return "comm"
+     if any(s in n for s in ("flash", "fmha", "attention", "sdpa", "softmax")):
+         return "attention"
+-    if any(s in n for s in ("gemm", "cutlass", "xmma", "cublas", "gemv", "aten::mm", "aten::addmm", "aten::bmm", "matmul")):
++    if any(s in n for s in ("gemm", "cutlass", "xmma", "cublas", "nvjet", "gemv", "aten::mm", "aten::addmm", "aten::bmm", "matmul")):
+         return "gemm"
+     if any(s in n for s in ("copy", "cat", "elementwise", "silu", "mul", "fill", "memcpy", "memset", "reduce")):
+         return "elementwise_copy"
+@@ -211,6 +211,8 @@ def profile_breakdown(module, x: torch.Tensor, device: torch.device, n: int) ->
+     cats: dict[str, float] = {}
+     kernels, attn_ops = [], {}
+     for evt in prof.key_averages():
++        if evt.is_user_annotation:  # CUDA NCCL annotations duplicate the underlying kernel durations.
++            continue
+         on_device = evt.device_type == DeviceType.CUDA
+         if "scaled_dot_product" in evt.key or "attention" in evt.key.lower() or "flash" in evt.key.lower():
+             if not on_device:
+diff --git a/src/tspfold/config.py b/src/tspfold/config.py
+index cf5c8d1..65dd842 100644
+--- a/src/tspfold/config.py
++++ b/src/tspfold/config.py
+@@ -20,8 +20,8 @@ DTYPES: dict[str, torch.dtype] = {
+ METHODS = ("tp", "tsp")
+ BLOCKS = ("attn", "mlp")
+ # "sdpa" lets PyTorch pick; "flash"/"efficient"/"math"/"cudnn" restrict SDPA to one backend;
+-# "flash_attn" uses the optional Dao-AILab package; "naive" is explicit matmul-softmax.
+-ATTN_BACKENDS = ("sdpa", "flash", "efficient", "math", "cudnn", "flash_attn", "naive")
++# "cudnn_frontend" uses native lower-right cuDNN masking; "flash_attn" uses Dao-AILab's package.
++ATTN_BACKENDS = ("sdpa", "flash", "efficient", "math", "cudnn", "cudnn_frontend", "flash_attn", "naive")
+ 
+ 
+ class ConfigError(ValueError):
+diff --git a/src/tspfold/correctness.py b/src/tspfold/correctness.py
+index 5d34080..194f422 100644
+--- a/src/tspfold/correctness.py
++++ b/src/tspfold/correctness.py
+@@ -22,7 +22,7 @@ from dataclasses import dataclass
+ import torch
+ import torch.distributed as dist
+ 
+-from .config import BlockShape, ConfigError, parse_dtype
++from .config import ATTN_BACKENDS, BlockShape, ConfigError, parse_dtype
+ from .dist_utils import all_gather_stacked, init_from_env, precision_settings, set_fp32_strict
+ from .layout import zigzag_shard, zigzag_unshard
+ from .metrics import TOLERANCES, compare, max_abs_diff
+@@ -299,6 +299,10 @@ def main(argv: list[str] | None = None) -> int:
+     ap.add_argument("--device", default="auto", choices=["auto", "cuda", "cpu"])
+     ap.add_argument("--dtype", default=None, help="only run cases of this dtype")
+     ap.add_argument("--block", default=None, choices=["attn", "mlp"], help="only run this block")
++    ap.add_argument(
++        "--attn-backend", choices=ATTN_BACKENDS,
++        help="override default attention cases; omit the suite's separate forced-backend cases",
++    )
+     args = ap.parse_args(argv)
+ 
+     os.environ.setdefault("MASTER_ADDR", "127.0.0.1")
+@@ -308,9 +312,11 @@ def main(argv: list[str] | None = None) -> int:
+     rank, world, device = init_from_env(args.device)
+     set_fp32_strict(True)  # TF32 off: FP32 diagnostics must not be silently downgraded
+     cases = [
+-        c
++        dataclasses.replace(c, backend=args.attn_backend)
++        if args.attn_backend is not None and c.block == "attn" else c
+         for c in build_suite(args.suite, world)
+         if (args.dtype is None or c.dtype == args.dtype) and (args.block is None or c.block == args.block)
++        and (args.attn_backend is None or c.block != "attn" or c.backend == "sdpa")
+     ]
+     log = print if rank == 0 else None
+     if log:
+diff --git a/src/tspfold/dist_utils.py b/src/tspfold/dist_utils.py
+index beb7fcf..d845e5c 100644
+--- a/src/tspfold/dist_utils.py
++++ b/src/tspfold/dist_utils.py
+@@ -23,7 +23,10 @@ def all_gather_stacked(t: torch.Tensor, group: dist.ProcessGroup | None = None)
+     """
+     world = dist.get_world_size(group)
+     out = t.new_empty((world * t.size(0),) + tuple(t.shape[1:]))
+-    dist.all_gather_single(out, t, group=group)
++    gather = getattr(dist, "all_gather_single", None)
++    if gather is None:  # PyTorch before the 2.13 collective API rename.
++        gather = dist.all_gather_into_tensor
++    gather(out, t, group=group)
+     return out.view((world,) + tuple(t.shape))
+ 
+ 
+diff --git a/src/tspfold/env.py b/src/tspfold/env.py
+index 40f3b02..3895790 100644
+--- a/src/tspfold/env.py
++++ b/src/tspfold/env.py
+@@ -51,8 +51,11 @@ def nvidia_smi_gpus() -> list[dict]:
+ 
+ 
+ def _norm_bus_id(bus: str) -> str:
+-    # nvidia-smi: 00000000:18:00.0 ; torch: 0000:18:00.0 -> compare on bus:device.function
+-    return bus.lower().split(":", 1)[-1] if bus.count(":") == 2 else bus.lower()
++    # Normalize domain padding without merging devices in distinct PCI domains (e.g. GB200).
++    if bus.count(":") == 2:
++        domain, address = bus.lower().split(":", 1)
++        return f"{int(domain, 16):08x}:{address}"
++    return bus.lower()
+ 
+ 
+ def visible_to_physical() -> list[int | None]:
+@@ -72,6 +75,7 @@ def visible_to_physical() -> list[int | None]:
+ 
+ def parse_topology(topo: str) -> dict[tuple[int, int], str]:
+     """Parse `nvidia-smi topo -m` into {(gpu_i, gpu_j): link} for GPU-GPU entries (e.g. 'NV12', 'PIX', 'SYS')."""
++    topo = re.sub(r"\x1b\[[0-9;]*m", "", topo)  # nvidia-smi underlines headers when TERM is set.
+     lines = [ln.rstrip() for ln in topo.splitlines() if ln.strip()]
+     header = next((ln for ln in lines if re.search(r"\bGPU0\b", ln)), None)
+     if header is None:
+@@ -97,6 +101,7 @@ def collect_env(device: torch.device | None = None) -> dict:
+         "torch": torch.__version__,
+         "numpy": _version("numpy"),
+         "flash_attn": _version("flash-attn") or _version("flash_attn"),
++        "cudnn_frontend": _version("nvidia-cudnn-frontend"),
+         "torch_cuda": torch.version.cuda,
+         "cudnn": torch.backends.cudnn.version() if cuda else None,
+         "nccl": ".".join(map(str, torch.cuda.nccl.version())) if cuda else None,
+diff --git a/src/tspfold/hwcheck.py b/src/tspfold/hwcheck.py
+index c60183c..ceef596 100644
+--- a/src/tspfold/hwcheck.py
++++ b/src/tspfold/hwcheck.py
+@@ -120,6 +120,7 @@ def main(argv: list[str] | None = None) -> int:
+     out = Path(args.out_dir)
+     sanity = collective_sanity(device)
+     bw = bandwidth(device, [int(s) for s in args.sizes_mib.split(",")], args.iters) if world == 2 else []
++    gate_pass = False
+     if rank == 0:
+         out.mkdir(parents=True, exist_ok=True)
+         env = collect_env(device)
+@@ -149,11 +150,15 @@ def main(argv: list[str] | None = None) -> int:
+         if not all(sanity.values()):
+             reasons.append("collective/P2P sanity failed")
+         gate["gate_pass"] = not reasons
++        gate_pass = gate["gate_pass"]
+         gate["reasons"] = reasons
+         (out / "hw_gate.json").write_text(json.dumps(gate, indent=2))
+         print(json.dumps(gate, indent=2))
++    flag = torch.tensor([int(gate_pass)], device=device)
++    dist.broadcast(flag, src=0)
++    gate_pass = bool(flag.item())
+     dist.destroy_process_group()
+-    return 0
++    return 0 if gate_pass else 1
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/src/tspfold/ops.py b/src/tspfold/ops.py
+index e804d12..5e33181 100644
+--- a/src/tspfold/ops.py
++++ b/src/tspfold/ops.py
+@@ -50,6 +50,10 @@ def causal_attention(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, backend:
+         raise ConfigError(f"key length {lk} shorter than query length {lq}")
+     if backend == "naive":
+         return naive_causal_attention(q, k, v)
++    if backend == "cudnn_frontend":
++        from .cudnn_attention import cudnn_causal_attention
++
++        return cudnn_causal_attention(q, k, v)
+     if backend == "flash_attn":
+         from flash_attn import flash_attn_func  # optional dependency; causal is bottom-right since v2.1
+ 
+diff --git a/src/tspfold/tsp.py b/src/tspfold/tsp.py
+index d345be6..825ec2e 100644
+--- a/src/tspfold/tsp.py
++++ b/src/tspfold/tsp.py
+@@ -109,10 +109,10 @@ class TSPAttention:
+                     attn[:, :sc, heads] = causal_attention(q[:, :sc], kv[0, :, :s1], kv[1, :, :s1], self.backend)
+                     attn[:, sc:, heads] = causal_attention(q[:, sc:], kv[0, :, :s2], kv[1, :, :s2], self.backend)
+                     del kv  # lines 19-21
+-                del qkv
++                del q, qkv  # Release the view too, before allocating the next owner's buffers.
+                 attn2d = attn.view(-1, hs)
+                 y = torch.mm(attn2d, w_o_t) if y is None else y.addmm_(attn2d, w_o_t)  # line 23
+-                del attn, w, work, w_qkv, w_o_t
++                del attn2d, attn, w, work, w_qkv, w_o_t
+         for work in deferred:
+             work.wait()
+         return y.view(bsz, s_loc, sh.hidden)
+diff --git a/tests/test_harness.py b/tests/test_harness.py
+index a9f4def..d860ee7 100644
+--- a/tests/test_harness.py
++++ b/tests/test_harness.py
+@@ -1,10 +1,14 @@
++import contextlib
+ import json
+ import os
+ import subprocess
+ import sys
++from types import SimpleNamespace
+ 
+ import pytest
++import torch
+ 
++from tspfold import bench, dist_utils, env as env_utils, hwcheck
+ from tspfold.env import parse_topology
+ 
+ TOPO_NVLINK = """\
+@@ -35,6 +39,70 @@ def test_parse_topology():
+     assert (0, 3) not in links  # NIC columns are not GPUs
+     assert parse_topology(TOPO_PCIE)[(0, 1)] == "PHB"
+     assert parse_topology("") == {}
++    styled = TOPO_NVLINK.replace("\tGPU0", "\t\x1b[4mGPU0", 1).replace("GPU NUMA ID\n", "GPU NUMA ID\x1b[0m\n", 1)
++    assert parse_topology(styled) == links
++
++
++def test_visible_to_physical_preserves_pci_domains(monkeypatch):
++    domains = [8, 9, 24, 25]
++    monkeypatch.setattr(env_utils, "nvidia_smi_gpus", lambda: [
++        {"index": i, "pci_bus_id": f"{domain:08x}:01:00.0"} for i, domain in enumerate(domains)
++    ])
++    monkeypatch.setattr(torch.cuda, "is_available", lambda: True)
++    monkeypatch.setattr(torch.cuda, "device_count", lambda: 2)
++    monkeypatch.setattr(torch.cuda, "get_device_properties", lambda i: SimpleNamespace(
++        pci_domain_id=domains[1 - i], pci_bus_id=1, pci_device_id=0,
++    ))
++    assert env_utils.visible_to_physical() == [1, 0]
++
++
++@pytest.mark.parametrize("legacy", [False, True])
++def test_all_gather_stacked_collective_api_compatibility(monkeypatch, legacy):
++    def gather(out, value, group=None):
++        out.copy_(torch.cat([value, value + 10], dim=0))
++
++    api = "all_gather_into_tensor" if legacy else "all_gather_single"
++    other = "all_gather_single" if legacy else "all_gather_into_tensor"
++    monkeypatch.setattr(dist_utils.dist, api, gather, raising=False)
++    monkeypatch.delattr(dist_utils.dist, other, raising=False)
++    monkeypatch.setattr(dist_utils.dist, "get_world_size", lambda group: 2)
++    value = torch.arange(6).view(2, 3)
++    torch.testing.assert_close(dist_utils.all_gather_stacked(value), torch.stack([value, value + 10]))
++
++
++def test_hwcheck_returns_failure_when_gate_fails(monkeypatch, tmp_path):
++    monkeypatch.setattr(hwcheck, "init_from_env", lambda device: (0, 2, torch.device("cpu")))
++    monkeypatch.setattr(hwcheck, "collective_sanity", lambda device: {"all_reduce": True})
++    monkeypatch.setattr(hwcheck, "bandwidth", lambda *args: [])
++    monkeypatch.setattr(hwcheck, "collect_env", lambda device: {})
++    monkeypatch.setattr(hwcheck, "run_cmd", lambda cmd: None)
++    monkeypatch.setattr(hwcheck.dist, "broadcast", lambda tensor, src: None)
++    monkeypatch.setattr(hwcheck.dist, "destroy_process_group", lambda: None)
++    assert hwcheck.main(["--device", "cpu", "--out-dir", str(tmp_path)]) == 1
++    gate = json.loads((tmp_path / "hw_gate.json").read_text())
++    assert not gate["gate_pass"] and "CUDA not used" in gate["reasons"]
++
++
++def test_profile_counts_kernels_not_cuda_annotations(monkeypatch):
++    from torch.autograd import DeviceType
++
++    events = [
++        SimpleNamespace(
++            key=name, device_type=DeviceType.CUDA, count=1,
++            self_device_time_total=us, is_user_annotation=annotation,
++        )
++        for name, us, annotation in [
++            ("nvjet_sm100_tst_128x64_64x10_2x2_2cta_h_bz_NNT", 5.0, False),
++            ("ncclDevKernel_AllReduce_Sum_bf16_RING_LL", 12.0, False),
++            ("nccl:all_reduce", 12.0, True),
++        ]
++    ]
++    prof = SimpleNamespace(key_averages=lambda: events)
++    monkeypatch.setattr(torch.profiler, "profile", lambda **kwargs: contextlib.nullcontext(prof))
++    monkeypatch.setattr(bench, "synchronize", lambda device: None)
++    result = bench.profile_breakdown(lambda x: x, torch.ones(1), torch.device("cuda"), 1)
++    assert result["category_us_per_iter"] == {"gemm": 5.0, "comm": 12.0}
++    assert len(result["top_kernels"]) == 2
+ 
+ 
+ @pytest.mark.distributed
+@@ -58,7 +126,11 @@ def test_sweep_isolates_single_rank_oom(tmp_path):
+     assert {r["seq_len"] for r in by_status["oom"]} == {16} and len(by_status["oom"]) == 2
+     assert {r["seq_len"] for r in by_status["skipped"]} == {32} and len(by_status["skipped"]) == 2
+     assert all(r["elapsed_s"] < 60 for r in by_status["oom"])
+-    assert all([s["rank"] for s in r["rank_status"]] == [1] for r in by_status["oom"])
++    for r in by_status["oom"]:
++        assert [s["rank"] for s in r["rank_status"] if s["status"] == "oom"] == [1]
++        for s in r["rank_status"]:
++            if s["rank"] == 0:  # Gloo may report peer disconnection before torchrun terminates it.
++                assert s["status"] == "error" and "Connection closed by peer" in s["error"]
+ 
+     out = subprocess.run([sys.executable, "-m", "tspfold.analyze", "--results-dir", str(tmp_path),
+                           "--out-dir", str(tmp_path / "analysis"), "--no-plots"],
+diff --git a/tests/test_ops.py b/tests/test_ops.py
+index 141ac2e..ffd64c4 100644
+--- a/tests/test_ops.py
++++ b/tests/test_ops.py
+@@ -1,4 +1,6 @@
++import gc
+ import math
++import weakref
+ 
+ import pytest
+ import torch
+@@ -64,3 +66,59 @@ def test_reference_attention_is_causal_and_matches_mha():
+     y2 = reference_attention(x2, w, H)
+     assert torch.equal(y2[:, :t], y[:, :t])
+     assert not torch.allclose(y2[:, t:], y[:, t:])
++
++
++def test_cudnn_frontend_rejects_cpu_inputs():
++    q, k, v = (torch.randn(1, 4, 2, 8) for _ in range(3))
++    with pytest.raises(RuntimeError, match="requires CUDA FP16/BF16"):
++        causal_attention(q, k, v, "cudnn_frontend")
++
++
++@pytest.mark.gpu
++@pytest.mark.skipif(not torch.cuda.is_available(), reason="requires CUDA")
++@pytest.mark.parametrize("dtype", [torch.float16, torch.bfloat16])
++@pytest.mark.parametrize("batch,lq,lk", [(1, 16, 16), (2, 16, 64), (1, 3, 7)])
++def test_cudnn_frontend_strided_lower_right(dtype, batch, lq, lk):
++    pytest.importorskip("cudnn")
++    torch.manual_seed(123)
++    qkv = torch.randn(batch, 2 * lq, 3, 8, 64, dtype=dtype, device="cuda")
++    kv = torch.randn(2, batch, lk + lq, 8, 64, dtype=dtype, device="cuda")
++    q, k, v = qkv[:, lq:, 0, 4:], kv[0, :, :lk, 4:], kv[1, :, :lk, 4:]
++    out = causal_attention(q, k, v, "cudnn_frontend")
++    ref = _explicit(q.double().cpu(), k.double().cpu(), v.double().cpu(), lk - lq)
++    torch.testing.assert_close(out.double().cpu(), ref, atol=0.02, rtol=0.02)
++
++
++@pytest.mark.gpu
++@pytest.mark.skipif(not torch.cuda.is_available(), reason="requires CUDA")
++def test_cudnn_frontend_cache_stream_and_input_lifetimes():
++    pytest.importorskip("cudnn")
++    baseline = torch.cuda.memory_allocated()
++    q, k, v = (torch.randn(1, length, 2, 64, device="cuda", dtype=torch.bfloat16)
++               for length in (16, 64, 64))
++    first = causal_attention(q, k, v, "cudnn_frontend")
++    torch.cuda.synchronize()
++    stream = torch.cuda.Stream()
++    with torch.cuda.stream(stream):
++        # A cached plan must execute on this stream, after the new input has been produced.
++        torch.cuda._sleep(5_000_000)
++        changed = v + 1
++        second = causal_attention(q, k, changed, "cudnn_frontend")
++    torch.cuda.current_stream().wait_stream(stream)
++    torch.testing.assert_close(second, first + 1, atol=0.02, rtol=0.02)
++    refs = [weakref.ref(t) for t in (q, k, v, changed)]
++    del q, k, v, changed, first, second
++    torch.cuda.synchronize()
++    gc.collect()
++    assert all(ref() is None for ref in refs)
++    assert torch.cuda.memory_allocated() == baseline
++
++
++@pytest.mark.gpu
++@pytest.mark.skipif(not torch.cuda.is_available(), reason="requires CUDA")
++def test_cudnn_frontend_does_not_silently_drop_gradients():
++    pytest.importorskip("cudnn")
++    q, k, v = (torch.randn(1, 16, 2, 64, device="cuda", dtype=torch.float16, requires_grad=True)
++               for _ in range(3))
++    with pytest.raises(RuntimeError, match="forward-only"):
++        causal_attention(q, k, v, "cudnn_frontend")
+diff --git a/uv.lock b/uv.lock
+index ea14a8a..fc88097 100644
+--- a/uv.lock
++++ b/uv.lock
+@@ -21,7 +21,7 @@ resolution-markers = [
+     "python_full_version < '3.12' and platform_machine == 'arm64' and sys_platform == 'darwin'",
+ ]
+ dependencies = [
+-    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version < '3.12' and platform_machine == 'arm64' and sys_platform == 'darwin') or (python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform == 'linux')" },
++    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" } },
+ ]
+ sdist = { url = "https://files.pythonhosted.org/packages/58/01/1253e6698a07380cd31a736d248a3f2a50a7c88779a1813da27503cadc2a/contourpy-1.3.3.tar.gz", hash = "sha256:083e12155b210502d0bca491432bb04d56dc3432f95a979b429f2848c3dbe880", size = 13466174, upload-time = "2025-07-26T12:03:12.549Z" }
+ wheels = [
+@@ -44,7 +44,7 @@ resolution-markers = [
+     "python_full_version >= '3.12' and platform_machine == 'arm64' and sys_platform == 'darwin'",
+ ]
+ dependencies = [
+-    { name = "numpy", version = "2.5.5", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version >= '3.12' and platform_machine == 'arm64' and sys_platform == 'darwin') or (python_full_version >= '3.12' and platform_machine == 'x86_64' and sys_platform == 'linux')" },
++    { name = "numpy", version = "2.5.5", source = { registry = "https://pypi.org/simple" } },
+ ]
+ sdist = { url = "https://files.pythonhosted.org/packages/83/5a/a55177dd22553a277388e8a1b3220e92de91bacb28356cdc73caa240121d/contourpy-1.4.0.tar.gz", hash = "sha256:20156f5a1ac4f8ce02656e39a61e82164a3d359796dc8026f75b062783d500e1", size = 13323726, upload-time = "2026-09-11T19:05:05.808Z" }
+ wheels = [
+@@ -58,7 +58,7 @@ name = "cuda-bindings"
+ version = "12.9.10"
+ source = { registry = "https://pypi.org/simple" }
+ dependencies = [
+-    { name = "cuda-pathfinder", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "cuda-pathfinder" },
+ ]
+ wheels = [
+     { url = "https://files.pythonhosted.org/packages/51/bc/349fdb2860037429e7b1c5e48d803030031b5b3ef7a9c98413cc58aa082a/cuda_bindings-12.9.10-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:1d6a8a4d17fbf5e448de0c0729ab6fde46fc5b9211b96a575d45d8686b6a9707", size = 7607445, upload-time = "2026-10-15T14:11:57.201Z" },
+@@ -83,34 +83,34 @@ wheels = [
+ 
+ [package.optional-dependencies]
+ cublas = [
+-    { name = "nvidia-cublas-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-cublas-cu12" },
+ ]
+ cudart = [
+-    { name = "nvidia-cuda-runtime-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-cuda-runtime-cu12" },
+ ]
+ cufft = [
+-    { name = "nvidia-cufft-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-cufft-cu12" },
+ ]
+ cufile = [
+-    { name = "nvidia-cufile-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-cufile-cu12" },
+ ]
+ cupti = [
+-    { name = "nvidia-cuda-cupti-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-cuda-cupti-cu12" },
+ ]
+ curand = [
+-    { name = "nvidia-curand-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-curand-cu12" },
+ ]
+ cusolver = [
+-    { name = "nvidia-cusolver-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-cusolver-cu12" },
+ ]
+ cusparse = [
+-    { name = "nvidia-cusparse-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-cusparse-cu12" },
+ ]
+ nvrtc = [
+-    { name = "nvidia-cuda-nvrtc-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-cuda-nvrtc-cu12" },
+ ]
+ nvtx = [
+-    { name = "nvidia-nvtx-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-nvtx-cu12" },
+ ]
+ 
+ [[package]]
+@@ -169,7 +169,7 @@ name = "jinja2"
+ version = "3.1.6"
+ source = { registry = "https://pypi.org/simple" }
+ dependencies = [
+-    { name = "markupsafe", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
++    { name = "markupsafe" },
+ ]
+ sdist = { url = "https://files.pythonhosted.org/packages/df/bf/f7da0350254c0ed7c72f3e33cef02e048281fec7ecec5f032d4aac52226b/jinja2-3.1.6.tar.gz", hash = "sha256:0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d", size = 245115, upload-time = "2025-03-05T20:05:02.478Z" }
+ wheels = [
+@@ -215,17 +215,17 @@ name = "matplotlib"
+ version = "3.11.2"
+ source = { registry = "https://pypi.org/simple" }
+ dependencies = [
+-    { name = "contourpy", version = "1.3.3", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version < '3.12' and platform_machine == 'arm64' and sys_platform == 'darwin') or (python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "contourpy", version = "1.4.0", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version >= '3.12' and platform_machine == 'arm64' and sys_platform == 'darwin') or (python_full_version >= '3.12' and platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "cycler", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "fonttools", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "kiwisolver", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version < '3.12' and platform_machine == 'arm64' and sys_platform == 'darwin') or (python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "numpy", version = "2.5.5", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version >= '3.12' and platform_machine == 'arm64' and sys_platform == 'darwin') or (python_full_version >= '3.12' and platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "packaging", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "pillow", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "pyparsing", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "python-dateutil", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
++    { name = "contourpy", version = "1.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
++    { name = "contourpy", version = "1.4.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
++    { name = "cycler" },
++    { name = "fonttools" },
++    { name = "kiwisolver" },
++    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
++    { name = "numpy", version = "2.5.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
++    { name = "packaging" },
++    { name = "pillow" },
++    { name = "pyparsing" },
++    { name = "python-dateutil" },
+ ]
+ sdist = { url = "https://files.pythonhosted.org/packages/e7/c8/9aa712a0afb882649424dd8de8ad9aa6235e796e84c6052e8f6dc1598d0d/matplotlib-3.11.2.tar.gz", hash = "sha256:cec596316640f2b394b8f0daa0ea61a8eae82d017b620b9f202befb972a59ea4", size = 32660610, upload-time = "2026-09-11T19:05:31.214Z" }
+ wheels = [
+@@ -352,18 +352,27 @@ name = "nvidia-cudnn-cu12"
+ version = "9.10.2.21"
+ source = { registry = "https://pypi.org/simple" }
+ dependencies = [
+-    { name = "nvidia-cublas-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-cublas-cu12" },
+ ]
+ wheels = [
+     { url = "https://files.pythonhosted.org/packages/ba/51/e123d997aa098c61d029f76663dedbfb9bc8dcf8c60cbd6adbe42f76d049/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", hash = "sha256:949452be657fa16687d0930933f032835951ef0892b37d2d53824d1a84dc97a8", size = 706758467, upload-time = "2025-06-06T21:54:08.597Z" },
+ ]
+ 
++[[package]]
++name = "nvidia-cudnn-frontend"
++version = "1.23.0"
++source = { registry = "https://pypi.org/simple" }
++wheels = [
++    { url = "https://files.pythonhosted.org/packages/be/18/5053e0f567eb1e6ce4f6584272312d1d9541180f7984699c8c9f02f4a3d6/nvidia_cudnn_frontend-1.23.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:7bdae232a3071501012611fab14aae34dd16983205e56d3c1641317910fdd385", size = 3079352, upload-time = "2026-04-29T19:13:20.659Z" },
++    { url = "https://files.pythonhosted.org/packages/b2/78/35832dc0b32995a0418533749f9d01c0fcd0b55b89abdaeb30195ad27712/nvidia_cudnn_frontend-1.23.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:36c9bbaeae94e40157c6119cdd9eb52dbdfdb0cedb195984910ea32827029198", size = 3082860, upload-time = "2026-04-29T19:14:41.481Z" },
++]
++
+ [[package]]
+ name = "nvidia-cufft-cu12"
+ version = "11.3.0.4"
+ source = { registry = "https://pypi.org/simple" }
+ dependencies = [
+-    { name = "nvidia-nvjitlink-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-nvjitlink-cu12" },
+ ]
+ wheels = [
+     { url = "https://files.pythonhosted.org/packages/8f/16/73727675941ab8e6ffd86ca3a4b7b47065edcca7a997920b831f8147c99d/nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:ccba62eb9cef5559abd5e0d54ceed2d9934030f51163df018532142a8ec533e5", size = 200221632, upload-time = "2024-11-20T17:41:32.357Z" },
+@@ -392,9 +401,9 @@ name = "nvidia-cusolver-cu12"
+ version = "11.7.1.2"
+ source = { registry = "https://pypi.org/simple" }
+ dependencies = [
+-    { name = "nvidia-cublas-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "nvidia-cusparse-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "nvidia-nvjitlink-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-cublas-cu12" },
++    { name = "nvidia-cusparse-cu12" },
++    { name = "nvidia-nvjitlink-cu12" },
+ ]
+ wheels = [
+     { url = "https://files.pythonhosted.org/packages/f0/6e/c2cf12c9ff8b872e92b4a5740701e51ff17689c4d726fca91875b07f655d/nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:e9e49843a7707e42022babb9bcfa33c29857a93b88020c4e4434656a655b698c", size = 158229790, upload-time = "2024-11-20T17:43:43.211Z" },
+@@ -406,7 +415,7 @@ name = "nvidia-cusparse-cu12"
+ version = "12.5.4.2"
+ source = { registry = "https://pypi.org/simple" }
+ dependencies = [
+-    { name = "nvidia-nvjitlink-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "nvidia-nvjitlink-cu12" },
+ ]
+ wheels = [
+     { url = "https://files.pythonhosted.org/packages/06/1e/b8b7c2f4099a37b96af5c9bb158632ea9e5d9d27d7391d7eb8fc45236674/nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:7556d9eca156e18184b94947ade0fba5bb47d69cec46bf8660fd2c71a4b48b73", size = 216561367, upload-time = "2024-11-20T17:44:54.824Z" },
+@@ -513,10 +522,10 @@ name = "pytest"
+ version = "9.2.0"
+ source = { registry = "https://pypi.org/simple" }
+ dependencies = [
+-    { name = "iniconfig", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "packaging", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "pluggy", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "pygments", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
++    { name = "iniconfig" },
++    { name = "packaging" },
++    { name = "pluggy" },
++    { name = "pygments" },
+ ]
+ sdist = { url = "https://files.pythonhosted.org/packages/79/42/bb4641652e58dedeac2ec51abc1f8cae4fee4ec63899a0999016229a0f2a/pytest-9.2.0.tar.gz", hash = "sha256:97c4f3b1f3c7414aa36465e09b8220f1d03627993bd51b1282e193753c80557b", size = 1797555, upload-time = "2026-10-27T21:30:20.728Z" }
+ wheels = [
+@@ -528,7 +537,7 @@ name = "python-dateutil"
+ version = "4.0.0"
+ source = { registry = "https://pypi.org/simple" }
+ dependencies = [
+-    { name = "tzdata", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
++    { name = "tzdata" },
+ ]
+ sdist = { url = "https://files.pythonhosted.org/packages/18/39/b3927f3616f6223832f9b760e4208e8a7c7e1dea2b4d9ad7d32a5d214c3a/python_dateutil-4.0.0.tar.gz", hash = "sha256:d7295ff14fdc0f92f662100bfb6c551d160ca090f2939f1ec5b9794265c03f06", size = 250419, upload-time = "2026-11-01T07:02:42.426Z" }
+ wheels = [
+@@ -549,7 +558,7 @@ name = "sympy"
+ version = "1.14.0"
+ source = { registry = "https://pypi.org/simple" }
+ dependencies = [
+-    { name = "mpmath", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
++    { name = "mpmath" },
+ ]
+ sdist = { url = "https://files.pythonhosted.org/packages/83/d3/803453b36afefb7c2bb238361cd4ae6125a569b4db67cd9e79846ba2d68c/sympy-1.14.0.tar.gz", hash = "sha256:d3d3fe8df1e5a0b42f0e7bdf50541697dbe7d23746e894990c030e2b05e72517", size = 7793921, upload-time = "2025-04-27T18:05:01.611Z" }
+ wheels = [
+@@ -565,14 +574,14 @@ resolution-markers = [
+     "python_full_version < '3.12' and platform_machine == 'arm64' and sys_platform == 'darwin'",
+ ]
+ dependencies = [
+-    { name = "filelock", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+-    { name = "fsspec", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+-    { name = "jinja2", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+-    { name = "networkx", version = "3.6.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12' and platform_machine == 'arm64' and sys_platform == 'darwin'" },
+-    { name = "networkx", version = "3.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12' and platform_machine == 'arm64' and sys_platform == 'darwin'" },
+-    { name = "setuptools", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+-    { name = "sympy", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+-    { name = "typing-extensions", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
++    { name = "filelock" },
++    { name = "fsspec" },
++    { name = "jinja2" },
++    { name = "networkx", version = "3.6.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
++    { name = "networkx", version = "3.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
++    { name = "setuptools" },
++    { name = "sympy" },
++    { name = "typing-extensions" },
+ ]
+ wheels = [
+     { url = "https://files.pythonhosted.org/packages/5d/9b/fd1cd143a7bda5abc1fc352ed7b431f6f52aa3c454293211a33656db2cb5/torch-2.14.1-cp311-cp311-macosx_14_0_arm64.whl", hash = "sha256:b6074b130fd26bc50f5d171f07dfed70db22dd0c354ab34767729249f9e0f042", size = 127281154, upload-time = "2026-09-30T17:43:58.328Z" },
+@@ -588,22 +597,22 @@ resolution-markers = [
+     "python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform == 'linux'",
+ ]
+ dependencies = [
+-    { name = "cuda-bindings", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "cuda-toolkit", extra = ["cublas", "cudart", "cufft", "cufile", "cupti", "curand", "cusolver", "cusparse", "nvrtc", "nvtx"], marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "filelock", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "fsspec", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "jinja2", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "networkx", version = "3.6.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "networkx", version = "3.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12' and platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "nvidia-cudnn-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "nvidia-cusparselt-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "nvidia-nccl-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "nvidia-nvjitlink-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "nvidia-nvshmem-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "setuptools", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "sympy", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "triton", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+-    { name = "typing-extensions", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "cuda-bindings" },
++    { name = "cuda-toolkit", extra = ["cublas", "cudart", "cufft", "cufile", "cupti", "curand", "cusolver", "cusparse", "nvrtc", "nvtx"] },
++    { name = "filelock" },
++    { name = "fsspec" },
++    { name = "jinja2" },
++    { name = "networkx", version = "3.6.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
++    { name = "networkx", version = "3.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
++    { name = "nvidia-cudnn-cu12" },
++    { name = "nvidia-cusparselt-cu12" },
++    { name = "nvidia-nccl-cu12" },
++    { name = "nvidia-nvjitlink-cu12" },
++    { name = "nvidia-nvshmem-cu12" },
++    { name = "setuptools" },
++    { name = "sympy" },
++    { name = "triton" },
++    { name = "typing-extensions" },
+ ]
+ wheels = [
+     { url = "https://download-r2.pytorch.org/whl/cu126/torch-2.14.1%2Bcu126-cp311-cp311-manylinux_2_28_x86_64.whl", hash = "sha256:acffcaa38f734dc04ba243d6192875a6ca185a2d2f19aac07fd16dc1aa7c926f", upload-time = "2026-09-30T19:54:50Z" },
+@@ -624,30 +633,34 @@ name = "tspfold"
+ version = "0.1.0"
+ source = { editable = "." }
+ dependencies = [
+-    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version < '3.12' and platform_machine == 'arm64' and sys_platform == 'darwin') or (python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "numpy", version = "2.5.5", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version >= '3.12' and platform_machine == 'arm64' and sys_platform == 'darwin') or (python_full_version >= '3.12' and platform_machine == 'x86_64' and sys_platform == 'linux')" },
+-    { name = "torch", version = "2.14.1", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+-    { name = "torch", version = "2.14.1+cu126", source = { registry = "https://download.pytorch.org/whl/cu126" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
++    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
++    { name = "numpy", version = "2.5.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
++    { name = "torch", version = "2.14.1", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform != 'linux'" },
++    { name = "torch", version = "2.14.1+cu126", source = { registry = "https://download.pytorch.org/whl/cu126" }, marker = "sys_platform == 'linux'" },
+ ]
+ 
+ [package.optional-dependencies]
+ analysis = [
+-    { name = "matplotlib", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
++    { name = "matplotlib" },
++]
++cudnn = [
++    { name = "nvidia-cudnn-frontend", marker = "sys_platform == 'linux'" },
+ ]
+ 
+ [package.dev-dependencies]
+ dev = [
+-    { name = "pytest", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
++    { name = "pytest" },
+ ]
+ 
+ [package.metadata]
+ requires-dist = [
+     { name = "matplotlib", marker = "extra == 'analysis'", specifier = ">=3.9" },
+     { name = "numpy", specifier = ">=2.1" },
++    { name = "nvidia-cudnn-frontend", marker = "sys_platform == 'linux' and extra == 'cudnn'", specifier = "==1.23.0" },
+     { name = "torch", marker = "sys_platform != 'linux'", specifier = "==2.14.1" },
+     { name = "torch", marker = "sys_platform == 'linux'", specifier = "==2.14.1", index = "https://download.pytorch.org/whl/cu126" },
+ ]
+-provides-extras = ["analysis"]
++provides-extras = ["analysis", "cudnn"]
+ 
+ [package.metadata.requires-dev]
+ dev = [{ name = "pytest", specifier = ">=8.3" }]
+diff --git a/configs/sweep_attention_cudnn.json b/configs/sweep_attention_cudnn.json
+new file mode 100644
+index 0000000..7783e3e
+--- /dev/null
++++ b/configs/sweep_attention_cudnn.json
+@@ -0,0 +1,23 @@
++{
++  "name": "attention_cudnn_bf16",
++  "description": "Matched TP/TSP attention using native cuDNN bottom-right masking. Explicit opt-in; preserves the original SDPA baseline.",
++  "hidden": 2048,
++  "heads": 16,
++  "intermediate": 8192,
++  "dtype": "bf16",
++  "attn_backend": "cudnn_frontend",
++  "warmup": 10,
++  "iters": 30,
++  "trials": 3,
++  "seed": 0,
++  "methods": ["tp", "tsp"],
++  "blocks": ["attn"],
++  "tsp_variants": [{"overlap": 1, "head_bucket": 0}],
++  "grid": [
++    {"batch": [1], "seq_len": [8192, 32768]},
++    {"batch": [4], "seq_len": [8192]}
++  ],
++  "profile_iters": 5,
++  "profile_trials": [0],
++  "timeout_s": 1200
++}
+diff --git a/src/tspfold/cudnn_attention.py b/src/tspfold/cudnn_attention.py
+new file mode 100644
+index 0000000..0595cce
+--- /dev/null
++++ b/src/tspfold/cudnn_attention.py
+@@ -0,0 +1,116 @@
++"""Forward-only cuDNN SDPA with native bottom-right masking, without a dense mask."""
++
++from __future__ import annotations
++
++import math
++import threading
++import weakref
++from collections import OrderedDict
++from dataclasses import dataclass
++from typing import TYPE_CHECKING
++
++import torch
++
++from .config import ConfigError
++
++if TYPE_CHECKING:
++    import cudnn
++
++_local = threading.local()
++_MAX_PLANS = 32
++
++
++@dataclass
++class _Plan:
++    graph: cudnn.pygraph
++    tensors: tuple[cudnn.tensor, cudnn.tensor, cudnn.tensor, cudnn.tensor]
++    workspace_size: int
++
++
++class _Context:
++    def __init__(self):
++        try:
++            import cudnn
++        except ModuleNotFoundError as exc:
++            if exc.name != "cudnn":
++                raise
++            raise RuntimeError(
++                "cudnn_frontend is not supported without nvidia-cudnn-frontend; install the cudnn extra"
++            ) from exc
++        self.cudnn = cudnn
++        self.handle = cudnn.create_handle()
++        self._cleanup = weakref.finalize(self, cudnn.destroy_handle, self.handle)
++        self.plans: OrderedDict[tuple, _Plan] = OrderedDict()
++
++    def plan(self, q: torch.Tensor, k: torch.Tensor, v: torch.Tensor) -> _Plan:
++        key = (q.dtype, *((tuple(t.shape), t.stride()) for t in (q, k, v)))
++        plan = self.plans.pop(key, None)
++        if plan is None:
++            plan = self._build(q, k, v)
++        self.plans[key] = plan
++        if len(self.plans) > _MAX_PLANS:
++            self.plans.popitem(last=False)
++        return plan
++
++    def _build(self, q: torch.Tensor, k: torch.Tensor, v: torch.Tensor) -> _Plan:
++        cudnn = self.cudnn
++        dtype = cudnn.data_type.BFLOAT16 if q.dtype == torch.bfloat16 else cudnn.data_type.HALF
++        graph = cudnn.pygraph(
++            io_data_type=dtype,
++            intermediate_data_type=cudnn.data_type.FLOAT,
++            compute_data_type=cudnn.data_type.FLOAT,
++            handle=self.handle,
++        )
++        qt, kt, vt = (graph.tensor_like(t.transpose(1, 2)) for t in (q, k, v))
++        out, _ = graph.sdpa(
++            q=qt, k=kt, v=vt,
++            attn_scale=1.0 / math.sqrt(q.size(-1)),
++            generate_stats=False,
++            diagonal_alignment=cudnn.diagonal_alignment.BOTTOM_RIGHT,
++            diagonal_band_right_bound=0,
++        )
++        batch, length, heads, dim = q.shape
++        out.set_output(True).set_dim((batch, heads, length, dim)).set_stride(
++            (length * heads * dim, dim, heads * dim, 1)
++        )
++        graph.validate()
++        graph.build_operation_graph()
++        graph.create_execution_plans([cudnn.heur_mode.A])
++        graph.check_support()
++        graph.build_plans(cudnn.build_plan_policy.HEURISTICS_CHOICE)
++        return _Plan(graph, (qt, kt, vt, out), graph.get_workspace_size())
++
++
++def cudnn_causal_attention(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor) -> torch.Tensor:
++    """Apply bottom-right causal SDPA to [B, L, H, d] CUDA FP16/BF16 tensors.
++
++    Cached plans contain metadata only. Outputs and workspaces are allocated on the caller's current
++    stream for every invocation, so their lifetimes are included in allocator peak measurements.
++    """
++    if q.device.type != "cuda" or q.dtype not in (torch.float16, torch.bfloat16):
++        raise RuntimeError("cudnn_frontend is not supported for this device/dtype; requires CUDA FP16/BF16")
++    if any(t.device != q.device or t.dtype != q.dtype for t in (k, v)):
++        raise ConfigError("cuDNN attention inputs must share a device and dtype")
++    if any(t.ndim != 4 for t in (q, k, v)):
++        raise ConfigError("cuDNN attention expects [B, L, H, d] inputs")
++    if k.shape != v.shape or q.shape[0] != k.shape[0] or q.shape[2:] != k.shape[2:]:
++        raise ConfigError("cuDNN attention requires matching batch, heads, head dimension, and K/V lengths")
++    if q.size(1) < 1 or k.size(1) < q.size(1):
++        raise ConfigError("cuDNN attention requires 0 < query length <= key length")
++    if torch.is_grad_enabled() and any(t.requires_grad for t in (q, k, v)):
++        raise RuntimeError("cudnn_frontend is forward-only; use inference_mode or no_grad")
++    with torch.cuda.device(q.device):
++        contexts = getattr(_local, "contexts", None)
++        if contexts is None:
++            contexts = _local.contexts = {}
++        device = q.get_device()
++        if device not in contexts:
++            contexts[device] = _Context()
++        context = contexts[device]
++        plan = context.plan(q, k, v)
++        output = torch.empty(q.shape, dtype=q.dtype, device=q.device)
++        workspace = torch.empty(plan.workspace_size, dtype=torch.uint8, device=q.device)
++        context.cudnn.set_stream(context.handle, torch.cuda.current_stream(q.device).cuda_stream)
++        qt, kt, vt, out = plan.tensors
++        plan.graph.execute({qt: q, kt: k, vt: v, out: output}, workspace, handle=context.handle)
++    return output

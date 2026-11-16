@@ -109,10 +109,10 @@ class TSPAttention:
                     attn[:, :sc, heads] = causal_attention(q[:, :sc], kv[0, :, :s1], kv[1, :, :s1], self.backend)
                     attn[:, sc:, heads] = causal_attention(q[:, sc:], kv[0, :, :s2], kv[1, :, :s2], self.backend)
                     del kv  # lines 19-21
-                del qkv
+                del q, qkv  # Release the view too, before allocating the next owner's buffers.
                 attn2d = attn.view(-1, hs)
                 y = torch.mm(attn2d, w_o_t) if y is None else y.addmm_(attn2d, w_o_t)  # line 23
-                del attn, w, work, w_qkv, w_o_t
+                del attn2d, attn, w, work, w_qkv, w_o_t
         for work in deferred:
             work.wait()
         return y.view(bsz, s_loc, sh.hidden)

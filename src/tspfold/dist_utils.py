@@ -23,7 +23,10 @@ def all_gather_stacked(t: torch.Tensor, group: dist.ProcessGroup | None = None) 
     """
     world = dist.get_world_size(group)
     out = t.new_empty((world * t.size(0),) + tuple(t.shape[1:]))
-    dist.all_gather_single(out, t, group=group)
+    gather = getattr(dist, "all_gather_single", None)
+    if gather is None:  # PyTorch before the 2.13 collective API rename.
+        gather = dist.all_gather_into_tensor
+    gather(out, t, group=group)
     return out.view((world,) + tuple(t.shape))
 
 

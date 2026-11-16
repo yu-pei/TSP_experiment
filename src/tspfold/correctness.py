@@ -22,7 +22,7 @@ from dataclasses import dataclass
 import torch
 import torch.distributed as dist
 
-from .config import BlockShape, ConfigError, parse_dtype
+from .config import ATTN_BACKENDS, BlockShape, ConfigError, parse_dtype
 from .dist_utils import all_gather_stacked, init_from_env, precision_settings, set_fp32_strict
 from .layout import zigzag_shard, zigzag_unshard
 from .metrics import TOLERANCES, compare, max_abs_diff
@@ -299,6 +299,10 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--device", default="auto", choices=["auto", "cuda", "cpu"])
     ap.add_argument("--dtype", default=None, help="only run cases of this dtype")
     ap.add_argument("--block", default=None, choices=["attn", "mlp"], help="only run this block")
+    ap.add_argument(
+        "--attn-backend", choices=ATTN_BACKENDS,
+        help="override default attention cases; omit the suite's separate forced-backend cases",
+    )
     args = ap.parse_args(argv)
 
     os.environ.setdefault("MASTER_ADDR", "127.0.0.1")
@@ -308,9 +312,11 @@ def main(argv: list[str] | None = None) -> int:
     rank, world, device = init_from_env(args.device)
     set_fp32_strict(True)  # TF32 off: FP32 diagnostics must not be silently downgraded
     cases = [
-        c
+        dataclasses.replace(c, backend=args.attn_backend)
+        if args.attn_backend is not None and c.block == "attn" else c
         for c in build_suite(args.suite, world)
         if (args.dtype is None or c.dtype == args.dtype) and (args.block is None or c.block == args.block)
+        and (args.attn_backend is None or c.block != "attn" or c.backend == "sdpa")
     ]
     log = print if rank == 0 else None
     if log:

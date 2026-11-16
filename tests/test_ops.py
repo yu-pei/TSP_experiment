@@ -1,4 +1,6 @@
+import gc
 import math
+import weakref
 
 import pytest
 import torch
@@ -64,3 +66,59 @@ def test_reference_attention_is_causal_and_matches_mha():
     y2 = reference_attention(x2, w, H)
     assert torch.equal(y2[:, :t], y[:, :t])
     assert not torch.allclose(y2[:, t:], y[:, t:])
+
+
+def test_cudnn_frontend_rejects_cpu_inputs():
+    q, k, v = (torch.randn(1, 4, 2, 8) for _ in range(3))
+    with pytest.raises(RuntimeError, match="requires CUDA FP16/BF16"):
+        causal_attention(q, k, v, "cudnn_frontend")
+
+
+@pytest.mark.gpu
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="requires CUDA")
+@pytest.mark.parametrize("dtype", [torch.float16, torch.bfloat16])
+@pytest.mark.parametrize("batch,lq,lk", [(1, 16, 16), (2, 16, 64), (1, 3, 7)])
+def test_cudnn_frontend_strided_lower_right(dtype, batch, lq, lk):
+    pytest.importorskip("cudnn")
+    torch.manual_seed(123)
+    qkv = torch.randn(batch, 2 * lq, 3, 8, 64, dtype=dtype, device="cuda")
+    kv = torch.randn(2, batch, lk + lq, 8, 64, dtype=dtype, device="cuda")
+    q, k, v = qkv[:, lq:, 0, 4:], kv[0, :, :lk, 4:], kv[1, :, :lk, 4:]
+    out = causal_attention(q, k, v, "cudnn_frontend")
+    ref = _explicit(q.double().cpu(), k.double().cpu(), v.double().cpu(), lk - lq)
+    torch.testing.assert_close(out.double().cpu(), ref, atol=0.02, rtol=0.02)
+
+
+@pytest.mark.gpu
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="requires CUDA")
+def test_cudnn_frontend_cache_stream_and_input_lifetimes():
+    pytest.importorskip("cudnn")
+    baseline = torch.cuda.memory_allocated()
+    q, k, v = (torch.randn(1, length, 2, 64, device="cuda", dtype=torch.bfloat16)
+               for length in (16, 64, 64))
+    first = causal_attention(q, k, v, "cudnn_frontend")
+    torch.cuda.synchronize()
+    stream = torch.cuda.Stream()
+    with torch.cuda.stream(stream):
+        # A cached plan must execute on this stream, after the new input has been produced.
+        torch.cuda._sleep(5_000_000)
+        changed = v + 1
+        second = causal_attention(q, k, changed, "cudnn_frontend")
+    torch.cuda.current_stream().wait_stream(stream)
+    torch.testing.assert_close(second, first + 1, atol=0.02, rtol=0.02)
+    refs = [weakref.ref(t) for t in (q, k, v, changed)]
+    del q, k, v, changed, first, second
+    torch.cuda.synchronize()
+    gc.collect()
+    assert all(ref() is None for ref in refs)
+    assert torch.cuda.memory_allocated() == baseline
+
+
+@pytest.mark.gpu
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="requires CUDA")
+def test_cudnn_frontend_does_not_silently_drop_gradients():
+    pytest.importorskip("cudnn")
+    q, k, v = (torch.randn(1, 16, 2, 64, device="cuda", dtype=torch.float16, requires_grad=True)
+               for _ in range(3))
+    with pytest.raises(RuntimeError, match="forward-only"):
+        causal_attention(q, k, v, "cudnn_frontend")

@@ -1,0 +1,53 @@
+{
+  "world_size": 2,
+  "device_type": "cuda",
+  "collectives": {
+    "all_reduce_float32": true,
+    "broadcast_float32": true,
+    "all_gather_float32": true,
+    "ring_p2p_float32": true,
+    "all_reduce_bfloat16": true,
+    "broadcast_bfloat16": true,
+    "all_gather_bfloat16": true,
+    "ring_p2p_bfloat16": true
+  },
+  "bandwidth": [
+    {
+      "size_mib": 16,
+      "p2p_unidirectional_GBps": 159.84381995991114,
+      "ring_exchange_per_direction_GBps": 103.29712323521441,
+      "all_reduce_busbw_GBps": 154.1800625597568,
+      "all_gather_busbw_GBps": 86.6018561706519
+    },
+    {
+      "size_mib": 64,
+      "p2p_unidirectional_GBps": 356.8073148334395,
+      "ring_exchange_per_direction_GBps": 218.93087325505093,
+      "all_reduce_busbw_GBps": 334.92572003963807,
+      "all_gather_busbw_GBps": 229.9764272289179
+    },
+    {
+      "size_mib": 256,
+      "p2p_unidirectional_GBps": 509.1087229142109,
+      "ring_exchange_per_direction_GBps": 313.33441624700555,
+      "all_reduce_busbw_GBps": 462.14316935828157,
+      "all_gather_busbw_GBps": 365.63492390814133
+    },
+    {
+      "size_mib": 1024,
+      "p2p_unidirectional_GBps": 666.8927418890645,
+      "ring_exchange_per_direction_GBps": 616.7463131020958,
+      "all_reduce_busbw_GBps": 559.1465013168952,
+      "all_gather_busbw_GBps": 465.79036011191323
+    }
+  ],
+  "visible_to_physical": [
+    0,
+    1
+  ],
+  "topology_link_gpu0_gpu1": "NV18",
+  "nvlink_topology": true,
+  "peer_access": true,
+  "gate_pass": true,
+  "reasons": []
+}

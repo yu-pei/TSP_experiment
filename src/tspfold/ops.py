@@ -50,6 +50,10 @@ def causal_attention(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, backend:
         raise ConfigError(f"key length {lk} shorter than query length {lq}")
     if backend == "naive":
         return naive_causal_attention(q, k, v)
+    if backend == "cudnn_frontend":
+        from .cudnn_attention import cudnn_causal_attention
+
+        return cudnn_causal_attention(q, k, v)
     if backend == "flash_attn":
         from flash_attn import flash_attn_func  # optional dependency; causal is bottom-right since v2.1
 

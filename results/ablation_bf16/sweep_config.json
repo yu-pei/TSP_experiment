@@ -1,0 +1,54 @@
+{
+  "name": "ablation_bf16",
+  "description": "TSP-only ablation: weight-transfer overlap on/off and K/V head-bucket size, at a short and a long sequence.",
+  "hidden": 2048,
+  "heads": 16,
+  "intermediate": 8192,
+  "dtype": "bf16",
+  "attn_backend": "sdpa",
+  "warmup": 10,
+  "iters": 30,
+  "trials": 3,
+  "seed": 0,
+  "methods": [
+    "tsp"
+  ],
+  "blocks": [
+    "attn",
+    "mlp"
+  ],
+  "tsp_variants": [
+    {
+      "overlap": 1,
+      "head_bucket": 0
+    },
+    {
+      "overlap": 0,
+      "head_bucket": 0
+    },
+    {
+      "overlap": 1,
+      "head_bucket": 4
+    },
+    {
+      "overlap": 1,
+      "head_bucket": 1
+    }
+  ],
+  "grid": [
+    {
+      "batch": [
+        1
+      ],
+      "seq_len": [
+        2048,
+        32768
+      ]
+    }
+  ],
+  "profile_iters": 5,
+  "profile_trials": [
+    0
+  ],
+  "timeout_s": 1200
+}

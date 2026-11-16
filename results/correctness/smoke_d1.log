@@ -1,0 +1,6 @@
+suite=smoke D=1 device=cuda:0 cases=4
+[1/4] ok attn_B1_S8_h32_H4_fp32_hball_sdpa_ov1_seed0 max_abs_err unsharded=6.75e-07 tp=4.93e-07 tsp=4.93e-07
+[2/4] ok attn_B2_S8_h32_H4_fp32_hb1_sdpa_ov0_seed1 max_abs_err unsharded=9.84e-07 tp=1.16e-06 tsp=1.16e-06
+[3/4] ok mlp_B1_S8_h32_I64_fp32_ov1_seed0 max_abs_err unsharded=2.79e-07 tp=2.79e-07 tsp=2.79e-07
+[4/4] ok mlp_B2_S8_h32_I64_fp32_ov0_seed1 max_abs_err unsharded=5.41e-07 tp=5.41e-07 tsp=5.41e-07
+12/12 records passed -> results/correctness/smoke_d1.jsonl

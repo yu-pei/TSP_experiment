@@ -1,0 +1,11 @@
+{
+  "timestamp_utc": "2026-11-16T07:39:29.092259+00:00",
+  "worker_sha256": "ebae82c079d536dd4c8fd91d692a08930fa469fccab954cf1856131343298f60",
+  "same_worker_as_attention_dispatch": true,
+  "python": "3.12.3",
+  "physical_gpus": [
+    0,
+    1
+  ],
+  "comparison_policy": "Fresh TP, unbucketed TSP, buckets 4/2/1, and MLP controls on the same pair; no runtime source change."
+}

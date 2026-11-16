@@ -1,0 +1,10 @@
+$ /tmp/tspfold-c92f5b03/repo/.venv/bin/python -m torch.distributed.run --nnodes=1 --nproc_per_node=2 --master_addr=127.0.0.1 --master_port=42923 -m tspfold.bench --method tp --block mlp --batch 1 --seq-len 16384 --hidden 2048 --heads 16 --intermediate 8192 --dtype bf16 --head-bucket 0 --overlap 1 --attn-backend sdpa --warmup 10 --iters 30 --seed 0 --trial-index 0 --profile 5 --device auto --out results/main_bf16/raw/mlp-tp-B1-S16384-h2048-H16-I8192-bf16-seed0-t0.jsonl --status-dir results/main_bf16/status
+/usr/local/lib/python3.12/dist-packages/torch/profiler/profiler.py:272: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.
+  _warn_once(
+/usr/local/lib/python3.12/dist-packages/torch/profiler/profiler.py:272: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.
+  _warn_once(
+USDT:2026-11-16 05:26:13 7724:7724 ActivityProfilerController.cpp:415] profiler_start
+USDT:2026-11-16 05:26:13 7725:7725 ActivityProfilerController.cpp:415] profiler_start
+USDT:2026-11-16 05:26:13 7725:7725 ActivityProfilerController.cpp:455] profiler_stopUSDT:2026-11-16 05:26:13 7724:7724 ActivityProfilerController.cpp:455] profiler_stop
+
+mlp-tp-B1-S16384-h2048-H16-I8192-bf16-seed0-t0 trial=0 median=1.062 ms thr=1.542e+07 tok/s peak_alloc=440.1 MiB

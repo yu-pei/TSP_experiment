@@ -1,0 +1,50 @@
+{
+  "name": "attention_sdpa_bf16",
+  "description": "Matched sdpa control for native-cuDNN attention; identical shapes and trials on the same worker.",
+  "hidden": 2048,
+  "heads": 16,
+  "intermediate": 8192,
+  "dtype": "bf16",
+  "attn_backend": "sdpa",
+  "warmup": 10,
+  "iters": 30,
+  "trials": 3,
+  "seed": 0,
+  "methods": [
+    "tp",
+    "tsp"
+  ],
+  "blocks": [
+    "attn"
+  ],
+  "tsp_variants": [
+    {
+      "overlap": 1,
+      "head_bucket": 0
+    }
+  ],
+  "grid": [
+    {
+      "batch": [
+        1
+      ],
+      "seq_len": [
+        8192,
+        32768
+      ]
+    },
+    {
+      "batch": [
+        4
+      ],
+      "seq_len": [
+        8192
+      ]
+    }
+  ],
+  "profile_iters": 5,
+  "profile_trials": [
+    0
+  ],
+  "timeout_s": 1200
+}

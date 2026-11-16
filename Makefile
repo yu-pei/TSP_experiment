@@ -10,7 +10,7 @@ REF_THREADS ?= 8
 PORT ?= $(shell $(PY) -c "from tspfold.launch import free_port; print(free_port())")
 TORCHRUN = $(PY) -m torch.distributed.run --nnodes=1 --nproc_per_node=$(NPROC) --master_addr=127.0.0.1 --master_port=$(PORT)
 
-.PHONY: help test hw-check correctness-gpu gpu-smoke sweep-main sweep-long sweep-ablation analyze report
+.PHONY: help test hw-check correctness-gpu gpu-smoke sweep-main sweep-long sweep-ablation sweep-attention-cudnn sweep-cudnn-bucketing analyze report
 
 help:
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | sed 's/:.*## /\t/'
@@ -39,6 +39,14 @@ sweep-long: ## T11: extend B=1 toward the memory limit
 
 sweep-ablation: ## T10/T11: TSP overlap on/off and head-bucket ablation
 	$(PY) -m tspfold.sweep --config configs/sweep_ablation.json --results-dir $(RESULTS) 2>&1 | tee -a $(RESULTS)/sweep_ablation.log
+
+sweep-attention-cudnn: ## Matched attention with the optional native cuDNN backend (CUDA FP16/BF16)
+	mkdir -p $(RESULTS)
+	$(PY) -m tspfold.sweep --config configs/sweep_attention_cudnn.json --results-dir $(RESULTS) 2>&1 | tee -a $(RESULTS)/sweep_attention_cudnn.log
+
+sweep-cudnn-bucketing: ## Native cuDNN attention all/4/2/1-head buckets plus matched MLP controls
+	mkdir -p $(RESULTS)
+	$(PY) -m tspfold.sweep --config configs/sweep_cudnn_bucketing.json --results-dir $(RESULTS) 2>&1 | tee -a $(RESULTS)/sweep_cudnn_bucketing.log
 
 analyze: ## T12: summary tables, matched ratios, figures
 	$(PY) -m tspfold.analyze --results-dir $(RESULTS) --out-dir $(RESULTS)/analysis

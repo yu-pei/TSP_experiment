@@ -1,0 +1,30 @@
+[
+  {
+    "case_id": "attn-tsp-B1-S1024-h2048-H16-I8192-bf16-sdpa-hb2-ov0-seed0-t0",
+    "before_peak_bytes": 57278464,
+    "after_peak_bytes": 54807552,
+    "saved_bytes": 2470912,
+    "unchanged_checksum": true
+  },
+  {
+    "case_id": "attn-tsp-B1-S1024-h2048-H16-I8192-bf16-sdpa-hball-ov1-seed0-t0",
+    "before_peak_bytes": 65142784,
+    "after_peak_bytes": 64562176,
+    "saved_bytes": 580608,
+    "unchanged_checksum": true
+  },
+  {
+    "case_id": "attn-tsp-B1-S8192-h2048-H16-I8192-bf16-sdpa-hb2-ov0-seed0-t0",
+    "before_peak_bytes": 163708928,
+    "after_peak_bytes": 130154496,
+    "saved_bytes": 33554432,
+    "unchanged_checksum": true
+  },
+  {
+    "case_id": "attn-tsp-B1-S8192-h2048-H16-I8192-bf16-sdpa-hball-ov1-seed0-t0",
+    "before_peak_bytes": 226623488,
+    "after_peak_bytes": 193069056,
+    "saved_bytes": 33554432,
+    "unchanged_checksum": true
+  }
+]

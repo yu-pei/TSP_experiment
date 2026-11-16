@@ -1,0 +1,63 @@
+{
+  "name": "cudnn_bucketing_bf16",
+  "description": "Same-worker TP versus native-cuDNN TSP attention with all/4/2/1-head K/V buckets, plus matched MLP controls. Fresh launches; no change to the original SDPA results.",
+  "hidden": 2048,
+  "heads": 16,
+  "intermediate": 8192,
+  "dtype": "bf16",
+  "attn_backend": "cudnn_frontend",
+  "warmup": 10,
+  "iters": 30,
+  "trials": 3,
+  "seed": 0,
+  "methods": [
+    "tp",
+    "tsp"
+  ],
+  "blocks": [
+    "attn",
+    "mlp"
+  ],
+  "tsp_variants": [
+    {
+      "overlap": 1,
+      "head_bucket": 0
+    },
+    {
+      "overlap": 1,
+      "head_bucket": 4
+    },
+    {
+      "overlap": 1,
+      "head_bucket": 2
+    },
+    {
+      "overlap": 1,
+      "head_bucket": 1
+    }
+  ],
+  "grid": [
+    {
+      "batch": [
+        1
+      ],
+      "seq_len": [
+        8192,
+        32768
+      ]
+    },
+    {
+      "batch": [
+        4
+      ],
+      "seq_len": [
+        8192
+      ]
+    }
+  ],
+  "profile_iters": 5,
+  "profile_trials": [
+    0
+  ],
+  "timeout_s": 1200
+}

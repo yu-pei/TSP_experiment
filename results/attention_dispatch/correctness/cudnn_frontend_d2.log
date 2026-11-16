@@ -1,0 +1,22 @@
+suite=gpu D=2 device=cuda:0 cases=20
+[1/20] ok attn_B1_S256_h512_H4_bf16_hball_cudnn_frontend_ov1_seed0 max_abs_err unsharded=1.08e-02 tp=1.55e-02 tsp=1.55e-02
+[2/20] ok attn_B1_S256_h512_H4_bf16_hball_cudnn_frontend_ov1_seed1 max_abs_err unsharded=9.24e-03 tp=1.34e-02 tsp=1.34e-02
+[3/20] ok attn_B1_S256_h512_H4_bf16_hball_cudnn_frontend_ov0_seed0 max_abs_err unsharded=1.08e-02 tp=1.55e-02 tsp=1.55e-02
+[4/20] ok attn_B1_S256_h512_H4_bf16_hball_cudnn_frontend_ov0_seed1 max_abs_err unsharded=9.24e-03 tp=1.34e-02 tsp=1.34e-02
+[5/20] ok attn_B2_S1024_h1024_H8_bf16_hball_cudnn_frontend_ov1_seed0 max_abs_err unsharded=1.10e-02 tp=1.52e-02 tsp=1.52e-02
+[6/20] ok attn_B2_S1024_h1024_H8_bf16_hball_cudnn_frontend_ov1_seed1 max_abs_err unsharded=1.31e-02 tp=1.71e-02 tsp=1.71e-02
+[7/20] ok attn_B2_S1024_h1024_H8_bf16_hball_cudnn_frontend_ov0_seed0 max_abs_err unsharded=1.10e-02 tp=1.52e-02 tsp=1.52e-02
+[8/20] ok attn_B2_S1024_h1024_H8_bf16_hball_cudnn_frontend_ov0_seed1 max_abs_err unsharded=1.31e-02 tp=1.71e-02 tsp=1.71e-02
+[9/20] ok attn_B2_S1024_h1024_H8_bf16_hb2_cudnn_frontend_ov1_seed0 max_abs_err unsharded=1.10e-02 tp=1.52e-02 tsp=1.52e-02
+[10/20] ok attn_B2_S1024_h1024_H8_bf16_hb2_cudnn_frontend_ov1_seed1 max_abs_err unsharded=1.31e-02 tp=1.71e-02 tsp=1.71e-02
+[11/20] ok attn_B2_S1024_h1024_H8_bf16_hb2_cudnn_frontend_ov0_seed0 max_abs_err unsharded=1.10e-02 tp=1.52e-02 tsp=1.52e-02
+[12/20] ok attn_B2_S1024_h1024_H8_bf16_hb2_cudnn_frontend_ov0_seed1 max_abs_err unsharded=1.31e-02 tp=1.71e-02 tsp=1.71e-02
+[13/20] ok attn_B1_S2048_h2048_H16_bf16_hball_cudnn_frontend_ov1_seed0 max_abs_err unsharded=1.04e-02 tp=1.39e-02 tsp=1.39e-02
+[14/20] ok attn_B1_S2048_h2048_H16_bf16_hball_cudnn_frontend_ov1_seed1 max_abs_err unsharded=1.17e-02 tp=1.59e-02 tsp=1.59e-02
+[15/20] ok attn_B1_S2048_h2048_H16_bf16_hball_cudnn_frontend_ov0_seed0 max_abs_err unsharded=1.04e-02 tp=1.39e-02 tsp=1.39e-02
+[16/20] ok attn_B1_S2048_h2048_H16_bf16_hball_cudnn_frontend_ov0_seed1 max_abs_err unsharded=1.17e-02 tp=1.59e-02 tsp=1.59e-02
+[17/20] ok attn_B1_S2048_h2048_H16_bf16_hb2_cudnn_frontend_ov1_seed0 max_abs_err unsharded=1.04e-02 tp=1.39e-02 tsp=1.39e-02
+[18/20] ok attn_B1_S2048_h2048_H16_bf16_hb2_cudnn_frontend_ov1_seed1 max_abs_err unsharded=1.17e-02 tp=1.59e-02 tsp=1.59e-02
+[19/20] ok attn_B1_S2048_h2048_H16_bf16_hb2_cudnn_frontend_ov0_seed0 max_abs_err unsharded=1.04e-02 tp=1.39e-02 tsp=1.39e-02
+[20/20] ok attn_B1_S2048_h2048_H16_bf16_hb2_cudnn_frontend_ov0_seed1 max_abs_err unsharded=1.17e-02 tp=1.59e-02 tsp=1.59e-02
+61/61 records passed -> results/correctness/cudnn_frontend_d2.jsonl

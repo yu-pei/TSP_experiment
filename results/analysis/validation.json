@@ -1,0 +1,23 @@
+{
+  "benchmark_records": 132,
+  "by_sweep": {
+    "main_bf16": 96,
+    "ablation_bf16": 36
+  },
+  "statuses": {
+    "ok": 132
+  },
+  "allocator_retries": 0,
+  "physical_gpus": [
+    0,
+    1
+  ],
+  "source_hashes_verified": true,
+  "trials": [
+    0,
+    1,
+    2
+  ],
+  "warmup": 10,
+  "iters": 30
+}

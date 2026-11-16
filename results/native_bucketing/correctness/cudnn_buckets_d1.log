@@ -1,0 +1,17 @@
+[1/16] ok attn_B1_S2048_h2048_H16_bf16_hball_cudnn_frontend_ov1_seed0 max_abs_err unsharded=1.04e-02 tp=1.04e-02 tsp=1.04e-02
+[2/16] ok attn_B1_S2048_h2048_H16_bf16_hball_cudnn_frontend_ov1_seed1 max_abs_err unsharded=1.17e-02 tp=1.17e-02 tsp=1.17e-02
+[3/16] ok attn_B1_S2048_h2048_H16_bf16_hb4_cudnn_frontend_ov1_seed0 max_abs_err unsharded=1.04e-02 tp=1.04e-02 tsp=1.04e-02
+[4/16] ok attn_B1_S2048_h2048_H16_bf16_hb4_cudnn_frontend_ov1_seed1 max_abs_err unsharded=1.17e-02 tp=1.17e-02 tsp=1.17e-02
+[5/16] ok attn_B1_S2048_h2048_H16_bf16_hb2_cudnn_frontend_ov1_seed0 max_abs_err unsharded=1.04e-02 tp=1.04e-02 tsp=1.04e-02
+[6/16] ok attn_B1_S2048_h2048_H16_bf16_hb2_cudnn_frontend_ov1_seed1 max_abs_err unsharded=1.17e-02 tp=1.17e-02 tsp=1.17e-02
+[7/16] ok attn_B1_S2048_h2048_H16_bf16_hb1_cudnn_frontend_ov1_seed0 max_abs_err unsharded=1.04e-02 tp=1.04e-02 tsp=1.04e-02
+[8/16] ok attn_B1_S2048_h2048_H16_bf16_hb1_cudnn_frontend_ov1_seed1 max_abs_err unsharded=1.17e-02 tp=1.17e-02 tsp=1.17e-02
+[9/16] ok attn_B4_S512_h2048_H16_bf16_hball_cudnn_frontend_ov1_seed0 max_abs_err unsharded=1.11e-02 tp=1.11e-02 tsp=1.11e-02
+[10/16] ok attn_B4_S512_h2048_H16_bf16_hball_cudnn_frontend_ov1_seed1 max_abs_err unsharded=1.37e-02 tp=1.37e-02 tsp=1.37e-02
+[11/16] ok attn_B4_S512_h2048_H16_bf16_hb4_cudnn_frontend_ov1_seed0 max_abs_err unsharded=1.11e-02 tp=1.11e-02 tsp=1.11e-02
+[12/16] ok attn_B4_S512_h2048_H16_bf16_hb4_cudnn_frontend_ov1_seed1 max_abs_err unsharded=1.37e-02 tp=1.37e-02 tsp=1.37e-02
+[13/16] ok attn_B4_S512_h2048_H16_bf16_hb2_cudnn_frontend_ov1_seed0 max_abs_err unsharded=1.11e-02 tp=1.11e-02 tsp=1.11e-02
+[14/16] ok attn_B4_S512_h2048_H16_bf16_hb2_cudnn_frontend_ov1_seed1 max_abs_err unsharded=1.37e-02 tp=1.37e-02 tsp=1.37e-02
+[15/16] ok attn_B4_S512_h2048_H16_bf16_hb1_cudnn_frontend_ov1_seed0 max_abs_err unsharded=1.11e-02 tp=1.11e-02 tsp=1.11e-02
+[16/16] ok attn_B4_S512_h2048_H16_bf16_hb1_cudnn_frontend_ov1_seed1 max_abs_err unsharded=1.37e-02 tp=1.37e-02 tsp=1.37e-02
+48/48 bucket correctness records passed
