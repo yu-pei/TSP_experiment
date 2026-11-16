@@ -1,0 +1,23 @@
+{
+  "name": "cpu_smoke",
+  "description": "Local harness check on CPU/gloo with tiny shapes. Timings are meaningless; never report them.",
+  "hidden": 64,
+  "heads": 4,
+  "intermediate": 256,
+  "dtype": "fp32",
+  "attn_backend": "sdpa",
+  "warmup": 2,
+  "iters": 5,
+  "trials": 2,
+  "seed": 0,
+  "methods": ["tp", "tsp"],
+  "blocks": ["attn", "mlp"],
+  "tsp_variants": [{"overlap": 1, "head_bucket": 0}, {"overlap": 0, "head_bucket": 1}],
+  "grid": [
+    {"batch": [1], "seq_len": [64, 128, 250]},
+    {"batch": [2], "seq_len": [64]}
+  ],
+  "profile_iters": 2,
+  "profile_trials": [0],
+  "timeout_s": 300
+}

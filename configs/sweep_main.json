@@ -1,0 +1,23 @@
+{
+  "name": "main_bf16",
+  "description": "Matched TP vs TSP: B=1 sequence sweep plus batch sweep at S=8192. TSP uses weight-transfer overlap and no head bucketing.",
+  "hidden": 2048,
+  "heads": 16,
+  "intermediate": 8192,
+  "dtype": "bf16",
+  "attn_backend": "sdpa",
+  "warmup": 10,
+  "iters": 30,
+  "trials": 3,
+  "seed": 0,
+  "methods": ["tp", "tsp"],
+  "blocks": ["attn", "mlp"],
+  "tsp_variants": [{"overlap": 1, "head_bucket": 0}],
+  "grid": [
+    {"batch": [1], "seq_len": [1024, 2048, 4096, 8192, 16384, 32768]},
+    {"batch": [2, 4], "seq_len": [8192]}
+  ],
+  "profile_iters": 5,
+  "profile_trials": [0],
+  "timeout_s": 1200
+}

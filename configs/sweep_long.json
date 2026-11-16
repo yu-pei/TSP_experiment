@@ -1,0 +1,22 @@
+{
+  "name": "long_bf16",
+  "description": "Extension of the B=1 sweep toward the memory limit (fewer iterations; OOMs recorded, larger S then skipped).",
+  "hidden": 2048,
+  "heads": 16,
+  "intermediate": 8192,
+  "dtype": "bf16",
+  "attn_backend": "sdpa",
+  "warmup": 3,
+  "iters": 10,
+  "trials": 1,
+  "seed": 0,
+  "methods": ["tp", "tsp"],
+  "blocks": ["attn", "mlp"],
+  "tsp_variants": [{"overlap": 1, "head_bucket": 0}],
+  "grid": [
+    {"batch": [1], "seq_len": [65536, 131072, 262144, 524288, 1048576]}
+  ],
+  "profile_iters": 0,
+  "profile_trials": [],
+  "timeout_s": 2400
+}

@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.DS_Store
+
+# Per-rank status files are transient; raw results, logs, and analysis outputs are deliverables.
+results/*/status/
+# Harness checks (make gpu-smoke, CPU smoke sweeps) are not results.
+scratch/
+
+# LaTeX build products
+report/*.aux
+report/*.log
+report/*.out
+report/*.fls
+report/*.fdb_latexmk
+report/*.synctex.gz

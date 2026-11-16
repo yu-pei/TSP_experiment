@@ -1,0 +1,83 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.62in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,graphicx,booktabs,xcolor,enumitem}
+\usepackage[hidelinks]{hyperref}
+\setlist{nosep,leftmargin=*}
+\setlength{\parskip}{2pt}\setlength{\parindent}{0pt}
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+\titleformat{\section}{\normalsize\bfseries}{\thesection}{0.5em}{}
+% Every measured number is a placeholder until results/analysis exists. Remove \TODO before submission.
+\newcommand{\TODO}[1]{\textcolor{red}{[TODO: #1]}}
+
+\title{\vspace{-1.6em}\large Folded Tensor+Sequence Parallelism (TSP) vs.\ Tensor Parallelism on Two NVLink GPUs:\\ Forward Attention and Gated-MLP Blocks\vspace{-0.6em}}
+\author{\small \TODO{author}}
+\date{\vspace{-1.2em}\small \TODO{date}; paper: arXiv:2604.26294 v1; source revision \TODO{git rev}}
+
+\begin{document}
+\maketitle
+
+\section{Approach and baseline}
+We implement the forward schedules of Algorithms~1 and~2 of Shyam, Golubeva, and Anthony (arXiv:2604.26294,
+v1) with PyTorch distributed (one process per GPU, NCCL) for $D{=}2$. Every rank holds one head shard
+(attention) or one intermediate-channel shard (SwiGLU MLP) \emph{and} a zigzag token shard: the sequence
+is cut into $2D$ chunks and rank $p$ owns chunks $p$ and $2D{-}1{-}p$.
+\textbf{TSP attention} visits weight owners $r=0,\dots,D{-}1$; the owner broadcasts its packed
+$[W_Q;W_K;W_V;W_O^{\top}]$ shard, every rank projects its local tokens, all-gathers K/V for a head
+bucket, restores global token order, evaluates its two query chunks against key prefixes
+$s_1=(p{+}1)S/2D$ and $s_2=(2D{-}p)S/2D$ with bottom-right causal alignment, and accumulates the
+output projection locally. \textbf{TSP MLP} circulates packed $[W_\text{gate};W_\text{up};W_\text{down}^{\top}]$
+shards in a ring with point-to-point send/receive launched before the current shard's GEMMs; outputs
+accumulate locally with no activation all-reduce.
+\textbf{Baseline:} conventional 2-way TP with replicated input, head/column-sharded projections, a
+row-parallel output/down projection, and one all-reduce. It uses the same two GPUs, the same
+persistent sharding degree, identical packed weight shards, and the same global operator, batch, and
+sequence, so the comparison isolates activation all-reduce (TP) against weight movement plus K/V
+exchange (TSP). A TP+SP mesh needs $\ge 4$ GPUs and is out of scope; the unsharded model serves only
+as a correctness oracle.
+
+\section{Implementation}
+Fused QKV and gate/up GEMMs read views of the packed shards; TSP attention prefetches the next
+broadcast while computing the current shard (owner does not stall on its own broadcast); K/V of a
+bucket are gathered in one collective and reordered with one concatenation kernel. Non-square causal
+attention uses PyTorch's lower-right \texttt{CausalBias} (the generic \texttt{is\_causal} flag is
+top-left aligned for unequal lengths); square cases use \texttt{is\_causal}. Attention backend
+actually selected (profiler): TP \TODO{kernel}, TSP \TODO{kernel}. Only local shards and bounded
+temporary shard/K/V buffers reside on the GPU; inputs are generated on CPU per rank from one global
+tensor. Environment: \TODO{2$\times$GPU model, memory, driver, CUDA, NCCL, torch 2.14.1, topology
+\texttt{NV\#}, measured P2P GB/s}.
+
+\section{Correctness}
+Deterministic inputs/weights are sharded identically for both methods and compared with a float64
+unsharded reference (TSP outputs are gathered and un-zigzagged only in the harness). Coverage: $D\in\{1,2\}$,
+$B\in\{1,2\}$, several $S$ and head counts, head buckets, overlap on/off, two seeds, repeated calls,
+TP cross-rank equality, ring exchange, and future-token perturbation at chunk boundaries (earlier
+outputs bitwise unchanged). Mutation checks (wrong causal bounds/alignment, missing reorder, untransposed
+$W_O$, premature ring-buffer use) are all detected. GPU results: \TODO{FP32 (TF32 off) max abs / normalized
+L2 error, BF16 max abs / L2 error, pass counts; unsharded-BF16 error for context}.
+
+\section{Results}
+\TODO{Figure: results/analysis/main\_bf16\_seq\_sweep.pdf (latency, peak allocated memory, ratios vs.\ $S$ at $B{=}1$).}
+\TODO{Table: matched speedup (TP/TSP latency) and memory reduction ($1-$TSP/TP peak allocated) per block and $S$; batch sweep at $S{=}8192$; OOM/unsupported outcomes; ablation (overlap on/off, head buckets).}
+Model: $h{=}2048$, $H{=}16$, $d{=}128$, $I{=}8192$; parameters per block: attention $16{,}777{,}216$, MLP $50{,}331{,}648$
+(BF16). Latency: median over 3 independent launches of the median over 30 iterations of the per-iteration
+maximum across ranks; throughput $=BS/\text{latency}$.
+
+\section{Observations}
+\TODO{Short- vs.\ long-sequence behaviour explained with measured kernel-time breakdown (comm vs.\ GEMM vs.\ attention) and the theoretical per-rank volumes below; whether weight transfer is hidden (ablation).}
+Theoretical per-rank forward volume ($D{=}2$, BF16): TP all-reduce $2BSh$ bytes for either block; TSP attention $4h^2$
+(weights) $+\,2BSh$ (K/V) bytes; TSP MLP $3Ih$ bytes, independent of $B$ and $S$. These are estimates, not measurements.
+
+\section{Limitations}
+Block-level forward measurements on one GPU pair; no backward pass, decoding, or end-to-end training
+claims; NCCL buffers are outside allocator statistics; TP also shards intermediates, so no fixed memory
+ratio is implied. \TODO{hardware-specific caveats}.
+
+\section{AI disclosure}
+The specification and the preceding paper discussion were AI-assisted. An AI coding assistant (Copilot
+SDK in VS Code) wrote essentially all code, tests, benchmark tooling, documentation, and this report's
+skeleton; \TODO{describe the author's review, GPU execution, and any later AI use}. Chat logs:
+\texttt{ai\_logs/}; details: \texttt{docs/AI\_USE.md}.
+
+\end{document}

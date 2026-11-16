@@ -1,0 +1,22 @@
+{
+  "name": "gpu_smoke",
+  "description": "Quick end-to-end GPU pipeline check at the benchmark model size before the long sweeps. Not a reported result.",
+  "hidden": 2048,
+  "heads": 16,
+  "intermediate": 8192,
+  "dtype": "bf16",
+  "attn_backend": "sdpa",
+  "warmup": 2,
+  "iters": 5,
+  "trials": 1,
+  "seed": 0,
+  "methods": ["tp", "tsp"],
+  "blocks": ["attn", "mlp"],
+  "tsp_variants": [{"overlap": 1, "head_bucket": 0}, {"overlap": 0, "head_bucket": 2}],
+  "grid": [
+    {"batch": [1], "seq_len": [1024, 8192]}
+  ],
+  "profile_iters": 3,
+  "profile_trials": [0],
+  "timeout_s": 600
+}
